@@ -12,17 +12,13 @@ struct AppView: View {
   @AppStorage("showTabBarView") var showTabBar: Bool = false
 
   var body: some View {
-    AppViewBuilder(showTabBar: showTabBar,
+    AppViewBuilder(
+      showTabBar: showTabBar,
       tabBarView: {
-        ZStack {
-          Color.pink.ignoresSafeArea()
-          Text("TabBar")
-        }
-      }, onboardingView: {
-        ZStack {
-          Color.purple.ignoresSafeArea()
-          Text("Onboarding")
-        }
+        TabBarView()
+      },
+      onboardingView: {
+        WelcomeView()
       }
     )
   }
