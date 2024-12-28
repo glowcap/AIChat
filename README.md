@@ -11,6 +11,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 2. Adding SwiftLint
 3. Routing between Signed In vs Signed Out
 4. Setup TabBar and NavigationStacks
+5. Adding root App State to the Environment
 
 ## Things to do
 
