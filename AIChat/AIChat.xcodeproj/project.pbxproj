@@ -29,9 +29,22 @@
 		4A2EB1072D2039710058DAAF /* AIChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4A939EC52D20560E00463A50 /* Exceptions for "AIChat" folder in "AIChat" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4A2EB0EB2D20396F0058DAAF /* AIChat */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A2EB0EE2D20396F0058DAAF /* AIChat */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A939EC52D20560E00463A50 /* Exceptions for "AIChat" folder in "AIChat" target */,
+			);
 			path = AIChat;
 			sourceTree = "<group>";
 		};
@@ -401,8 +414,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AIChat/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -432,8 +447,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AIChat/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
