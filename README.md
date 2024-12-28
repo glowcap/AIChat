@@ -8,7 +8,9 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 ### Section 1: Project Setup 
 
 1. Project Settings, Github, App Icon, & Launch Screen
+2. Adding SwiftLint
 
 ## Things to do
 
 - iOS 18+ branches
+
