@@ -9,8 +9,8 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 
 1. Project Settings, Github, App Icon, & Launch Screen
 2. Adding SwiftLint
+3. Routing between Signed In vs Signed Out
 
 ## Things to do
 
 - iOS 18+ branches
-
