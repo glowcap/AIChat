@@ -13,7 +13,7 @@ struct CompletedView: View {
 
   var body: some View {
     VStack {
-      Text("Welcome!")
+      Text("Onboaring Completed!")
         .frame(maxHeight: .infinity)
       Button {
         onFinishButtonPressed()
