@@ -13,6 +13,12 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 4. Setup TabBar and NavigationStacks
 5. Adding root App State to the Environment
 
+### Section 2: Onboarding Flow
+
+1. WelcomeView & ImageLoaderView
+
 ## Things to do
 
-- iOS 18+ branches
+- iOS 18+ branch
+- replace SDWebImageSwiftUI with native solution
+- accessibility
