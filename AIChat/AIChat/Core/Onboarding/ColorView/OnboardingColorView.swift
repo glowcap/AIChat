@@ -19,6 +19,7 @@ struct OnboardingColorView: View {
   var body: some View {
     ScrollView {
       colorGrid
+        .padding(.top, 24)
         .padding(.horizontal, 24)
     }
     .safeAreaInset(
@@ -28,7 +29,7 @@ struct OnboardingColorView: View {
       content: {
         ZStack {
           if let selectedColor {
-            ctaButton
+            ctaButton(selectedColor: selectedColor)
               .transition(AnyTransition.move(edge: .bottom))
           }
         }
@@ -37,6 +38,7 @@ struct OnboardingColorView: View {
       }
     )
     .animation(.bouncy, value: selectedColor)
+    .toolbar(.hidden, for: .navigationBar)
   }
 
 }
@@ -72,9 +74,9 @@ private extension OnboardingColorView {
     }
   }
 
-  var ctaButton: some View {
+  func ctaButton(selectedColor: Color) -> some View {
     NavigationLink {
-      OnboardingCompletedView()
+      OnboardingCompletedView(selectedColor: selectedColor)
     } label: {
       Text("Continue")
         .ctaButton()
@@ -87,4 +89,5 @@ private extension OnboardingColorView {
   NavigationStack {
     OnboardingColorView()
   }
+  .environment(AppState())
 }

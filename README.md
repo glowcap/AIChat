@@ -17,6 +17,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 
 1. WelcomeView & ImageLoaderView
 2. OnboardingIntroView & OnboardingColorView
+3. OnboardingCompletedView
 
 ## Things to do
 
@@ -24,4 +25,4 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 - [ ] replace SDWebImageSwiftUI with native solution
 - [ ] accessibility
 - [ ] localize Strings
-
+- [ ] padding constants
