@@ -22,6 +22,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 ### Module 3: TabBar Flow
 
 1. ExploreView: HeroCellView
+2. AvatarModel
 
 ## Things to do
 
