@@ -30,6 +30,8 @@ struct WelcomeView: View {
 
 }
 
+// MARK: - Subviews
+
 private extension WelcomeView {
 
   var titleSection: some View {
@@ -47,7 +49,7 @@ private extension WelcomeView {
   var ctaButtons: some View {
     VStack(spacing: 8) {
       NavigationLink {
-        CompletedView()
+        OnboardingIntroView()
       } label: {
         Text("Get Started")
           .ctaButton()

@@ -1,5 +1,5 @@
 //
-//  CompletedView.swift
+//  OnboardingCompletedView.swift
 //  AIChat
 //
 //  Created by Daymein Gregorio on 12/28/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompletedView: View {
+struct OnboardingCompletedView: View {
 
   @Environment(AppState.self) private var root
 
@@ -28,7 +28,7 @@ struct CompletedView: View {
 
 // MARK: - Private functions
 
-private extension CompletedView {
+private extension OnboardingCompletedView {
 
   func onFinishButtonPressed() {
     // other logic to complete onboarding
@@ -38,6 +38,6 @@ private extension CompletedView {
 }
 
 #Preview {
-  CompletedView()
+  OnboardingCompletedView()
     .environment(AppState())
 }

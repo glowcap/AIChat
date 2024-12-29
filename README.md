@@ -16,9 +16,12 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 ### Section 2: Onboarding Flow
 
 1. WelcomeView & ImageLoaderView
+2. OnboardingIntroView & OnboardingColorView
 
 ## Things to do
 
-- iOS 18+ branch
-- replace SDWebImageSwiftUI with native solution
-- accessibility
+- [ ] iOS 18+ branch
+- [ ] replace SDWebImageSwiftUI with native solution
+- [ ] accessibility
+- [ ] localize Strings
+
