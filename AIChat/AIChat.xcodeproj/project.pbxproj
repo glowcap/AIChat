@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4A2EB0FE2D2039710058DAAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +131,7 @@
 			);
 			name = AIChat;
 			packageProductDependencies = (
+				4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */,
 			);
 			productName = AIChat;
 			productReference = 4A2EB0EC2D20396F0058DAAF /* AIChat.app */;
@@ -209,6 +215,9 @@
 			);
 			mainGroup = 4A2EB0E32D20396F0058DAAF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A2EB0ED2D20396F0058DAAF /* Products */;
 			projectDirPath = "";
@@ -618,6 +627,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4A2EB0E42D20396F0058DAAF /* Project object */;
 }

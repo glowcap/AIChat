@@ -9,19 +9,74 @@ import SwiftUI
 
 struct WelcomeView: View {
 
+  @State var imageName: String = Constants.randomImage
+
   var body: some View {
     NavigationStack {
-      VStack {
-        Text("Welcome!")
-          .frame(maxHeight: .infinity)
-        NavigationLink {
-          CompletedView()
-        } label: {
-          Text("Get Started")
-            .ctaButton()
-        }
+      VStack(spacing: 8) {
+        ImageLoaderView(urlString: imageName)
+          .ignoresSafeArea()
+
+        titleSection
+          .padding(.top, 24)
+
+        ctaButtons
+          .padding(16)
+
+        policyLinks
       }
-      .padding(16)
+    }
+  }
+
+}
+
+private extension WelcomeView {
+
+  var titleSection: some View {
+    VStack(spacing: 8) {
+      Text("AI Chat 💬")
+        .font(.largeTitle)
+        .fontWeight(.semibold)
+
+      Text("for the introvert in all of us")
+        .font(.caption)
+        .foregroundStyle(.secondary)
+    }
+  }
+
+  var ctaButtons: some View {
+    VStack(spacing: 8) {
+      NavigationLink {
+        CompletedView()
+      } label: {
+        Text("Get Started")
+          .ctaButton()
+      }
+
+      Text("Already have an account? Sign in.")
+        .underline()
+        .font(.body)
+        .padding(8)
+        .tappableBackground()
+        .onTapGesture {
+
+        }
+    }
+  }
+
+  var policyLinks: some View {
+    HStack(spacing: 8) {
+      Link(destination: URL(string: Constants.termsOfServiceUrl)!) {
+        Text("Terms of Service")
+      }
+
+      Circle()
+        .fill(.accent)
+        .frame(width: 4, height: 4)
+
+      Link(destination: URL(string: Constants.privacyPolicyUrl)!) {
+        Text("Privacy Policy")
+      }
     }
   }
 
