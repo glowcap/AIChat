@@ -24,6 +24,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 2. AvatarModel
 3. ExploreView: CarouselView
 4. ExploreView: CategoryCell
+5. ExploreView: CustomListCellView
 
 ## Things to do
 

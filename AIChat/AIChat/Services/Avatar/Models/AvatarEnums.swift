@@ -19,6 +19,13 @@ enum AvatarType: String, CaseIterable, Hashable {
     .man
   }
 
+  var startsWithVowel: Bool {
+    switch self {
+    case .alien: true
+    default: false
+    }
+  }
+
   var categoryName: AttributedString {
     var string = AttributedString(localized: "\(self.rawValue.capitalized)")
     var morphology = Morphology()
