@@ -25,6 +25,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 3. ExploreView: CarouselView
 4. ExploreView: CategoryCell
 5. ExploreView: CustomListCellView
+6. ChatModel
 
 ## Things to do
 
@@ -34,3 +35,5 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 - [ ] localize Strings
 - [ ] padding constants
 - [ ] CarouselView support for viewAligned non-centered items
+- [ ] inline docs
+- [ ] clean up ViewModifiers.swift
