@@ -53,19 +53,7 @@ private extension HeroCellView {
     .foregroundStyle(.white)
     .padding(16)
     .frame(maxWidth: .infinity, alignment: .leading)
-    .background(textBackgroundGradient)
-  }
-
-  var textBackgroundGradient: some View {
-    LinearGradient(
-      colors: [
-        Color.black.opacity(0),
-        Color.black.opacity(0.3),
-        Color.black.opacity(0.6)
-      ],
-      startPoint: .top,
-      endPoint: .bottom
-    )
+    .textBackgroundGradient()
   }
 
 }

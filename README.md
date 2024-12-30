@@ -1,5 +1,4 @@
-# AIChat
-
+# AI Chat 💬 
 AIChat allows users to generate AI avatars to chat with.
 
 ## Branching
@@ -24,6 +23,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 1. ExploreView: HeroCellView
 2. AvatarModel
 3. ExploreView: CarouselView
+4. ExploreView: CategoryCell
 
 ## Things to do
 
@@ -32,3 +32,4 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 - [ ] accessibility
 - [ ] localize Strings
 - [ ] padding constants
+- [ ] CarouselView support for viewAligned non-centered items

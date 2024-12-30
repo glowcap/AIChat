@@ -83,7 +83,7 @@ private extension CarouselView {
 
 }
 
-#Preview {
+#Preview("Hero") {
   CarouselView(
     items: AvatarModel.mocks,
     content: { item in
@@ -92,5 +92,19 @@ private extension CarouselView {
       subtitle: item.avatarDescription,
       imageName: item.profileImageName
     )
+  })
+}
+
+// CarouselView needs support for viewAligned with non-centered items
+#Preview("Standard") {
+  CarouselView(
+    items: AvatarType.allCases,
+    content: { item in
+      HeroCellView(
+        title: item.rawValue,
+        subtitle: nil,
+        imageName: Constants.randomImage
+      )
+      .frame(width: 140, height: 140)
   })
 }

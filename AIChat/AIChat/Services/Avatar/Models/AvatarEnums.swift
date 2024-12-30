@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AvatarType: String {
+enum AvatarType: String, CaseIterable, Hashable {
   case alien
   case bird
   case cat
@@ -18,6 +18,18 @@ enum AvatarType: String {
   static var `default`: Self {
     .man
   }
+
+  var categoryName: AttributedString {
+    var string = AttributedString(localized: "\(self.rawValue.capitalized)")
+    var morphology = Morphology()
+
+    morphology.number = .plural
+    string.inflect = InflectionRule(morphology: morphology)
+
+    let formattedResult = string.inflected()
+    return formattedResult
+  }
+
 }
 
 enum AvatarAction: String {
