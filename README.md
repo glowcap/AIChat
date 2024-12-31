@@ -2,7 +2,7 @@
 AIChat allows users to generate AI avatars to chat with.
 
 ## Branching
-Branches are broken into sections and work done. Naming follows sXXpXX (ie. Section 01 Part: 01). Use the following to reference specific branches 
+Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 01 Part: 01). Use the following to reference specific branches 
 
 ### Module 1: Project Setup 
 
@@ -26,6 +26,7 @@ Branches are broken into sections and work done. Naming follows sXXpXX (ie. Sect
 4. ExploreView: CategoryCell
 5. ExploreView: CustomListCellView
 6. ChatModel
+7. ChatsView: ChatRowCellView
 
 ## Things to do
 
