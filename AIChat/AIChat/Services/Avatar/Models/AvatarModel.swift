@@ -49,11 +49,11 @@ struct AvatarModel: Hashable {
 
 extension AvatarModel {
 
-  static var mock: AvatarModel {
+  static var mock: Self {
     mocks[Int.random(in: 0..<mocks.count)]
   }
 
-  static var mocks: [AvatarModel] {
+  static var mocks: [Self] {
     [
       AvatarModel(
         avatarId: UUID().uuidString,
@@ -97,4 +97,5 @@ extension AvatarModel {
       )
     ]
   }
+
 }

@@ -27,6 +27,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 5. ExploreView: CustomListCellView
 6. ChatModel
 7. ChatsView: ChatRowCellView
+8. UserModel & ProfileView
 
 ## Things to do
 

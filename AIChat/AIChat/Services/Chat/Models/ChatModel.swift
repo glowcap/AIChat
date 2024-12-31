@@ -19,11 +19,11 @@ struct ChatModel: Identifiable {
 
 extension ChatModel {
 
-  static var mock: ChatModel {
+  static var mock: Self {
     mocks[0]
   }
 
-  static var mocks: [ChatModel] {
+  static var mocks: [Self] {
     let chat1Start = Date(timeIntervalSince1970: 1622505600)  // June 1, 2021
     let chat2Start = Date(timeIntervalSince1970: 1625097600)  // July 1, 2021
     let chat3Start = Date(timeIntervalSince1970: 1627776000)  // August 1, 2021
