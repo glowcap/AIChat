@@ -30,6 +30,10 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 8. UserModel & ProfileView
 9. CreateAccountView & SettingsView
 
+### Module 4: Feature Flow
+
+ 1. CreateAvatarView
+
 ## Things to do
 
 - [ ] iOS 18+ branch

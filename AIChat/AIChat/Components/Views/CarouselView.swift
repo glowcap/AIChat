@@ -89,7 +89,7 @@ private extension CarouselView {
     content: { item in
     HeroCellView(
       title: item.name,
-      subtitle: item.avatarDescription,
+      subtitle: item.description,
       imageName: item.profileImageName
     )
   })

@@ -1,5 +1,5 @@
 //
-//  AvatarEnums.swift
+//  AvatarAttributes.swift
 //  AIChat
 //
 //  Created by Daymein Gregorio on 12/29/24.
@@ -39,7 +39,7 @@ enum AvatarType: String, CaseIterable, Hashable {
 
 }
 
-enum AvatarAction: String {
+enum AvatarAction: String, CaseIterable, Hashable {
   case crying
   case drinking
   case eating
@@ -57,7 +57,7 @@ enum AvatarAction: String {
   }
 }
 
-enum AvatarLocation: String {
+enum AvatarLocation: String, CaseIterable, Hashable {
   case city
   case desert
   case forest

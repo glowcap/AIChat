@@ -11,7 +11,7 @@ struct CustomListCellView: View {
 
   var imageName: String? = Constants.randomImage
   var title: String? = AvatarModel.mock.name
-  var subtitle: String? = AvatarModel.mock.avatarDescription
+  var subtitle: String? = AvatarModel.mock.description
 
   var body: some View {
     HStack(spacing: 8) {
@@ -52,7 +52,7 @@ struct CustomListCellView: View {
     CustomListCellView(
       imageName: nil,
       title: AvatarModel.mock.name,
-      subtitle: AvatarModel.mock.avatarDescription
+      subtitle: AvatarModel.mock.description
     )
   }
 

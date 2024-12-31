@@ -41,19 +41,11 @@ struct OnboardingCompletedView: View {
 private extension OnboardingCompletedView {
 
   var ctaButton: some View {
-    ZStack {
-      if isCompletingProfileSetup {
-        ProgressView()
-          .tint(.white)
-      } else {
-        Text("Finish")
-      }
-    }
-    .ctaButton()
-    .anyButton(.press) {
-      onFinishButtonPressed()
-    }
-    .disabled(isCompletingProfileSetup)
+    AsyncCTAButton(
+      title: "Finish",
+      inProgress: isCompletingProfileSetup,
+      action: onFinishButtonPressed
+    )
   }
 }
 

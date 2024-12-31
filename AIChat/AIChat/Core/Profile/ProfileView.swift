@@ -27,12 +27,14 @@ struct ProfileView: View {
           settingsButton
         }
       }
-      .sheet(isPresented: $showSettingsView) {
-        SettingsView()
-      }
-      .fullScreenCover(isPresented: $showCreateAvatarView) {
-        Text("Create Avatar")
-      }
+      .sheet(
+        isPresented: $showSettingsView,
+        content: { SettingsView() }
+      )
+      .fullScreenCover(
+        isPresented: $showCreateAvatarView,
+        content: { CreateAvatarView() }
+      )
       .task {
         await loadData()
       }
@@ -140,4 +142,5 @@ private extension ProfileView {
 
 #Preview {
   ProfileView()
+    .environment(AppState())
 }

@@ -37,7 +37,7 @@ private extension ExploreView {
         CarouselView(items: featuredAvatars) { avatar in
           HeroCellView(
             title: avatar.name,
-            subtitle: avatar.avatarDescription,
+            subtitle: avatar.description,
             imageName: avatar.profileImageName
           )
           .anyButton {
@@ -85,7 +85,7 @@ private extension ExploreView {
         CustomListCellView(
           imageName: avatar.profileImageName,
           title: avatar.name,
-          subtitle: avatar.avatarDescription
+          subtitle: avatar.description
         )
         .anyButton(.highlight) {
           // action

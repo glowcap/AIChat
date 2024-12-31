@@ -39,7 +39,7 @@ struct AvatarModel: Hashable {
     self.dateCreated = dateCreated
   }
 
-  var avatarDescription: String {
+  var description: String {
     AvatarDescriptionBuilder(avatar: self).avatarDescription
   }
 
