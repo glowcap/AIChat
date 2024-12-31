@@ -12,24 +12,114 @@ struct SettingsView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(AppState.self) private var root
 
+  @State private var isPremium: Bool = false
+  @State private var isAnonymousUser: Bool = true
+  @State private var showCreateAccountView: Bool = false
+
   var body: some View {
     NavigationStack {
       List {
-        Button {
-          onSignOutPressed()
-        } label: {
-          Text("Sign Out")
+        accountSection
+        if !isAnonymousUser {
+          purchasesSection
         }
+        appSection
       }
       .navigationTitle("Settings")
+      .sheet(isPresented: $showCreateAccountView) {
+        CreateAccountView()
+          .presentationDetents([.medium])
+      }
     }
   }
+
 }
+
+// MARK: - Subveiws
+
+private extension SettingsView {
+
+  var accountSection: some View {
+    Section {
+      if isAnonymousUser {
+        Text("Create an Account")
+          .rowFormatting()
+          .anyButton(.highlight, action: onCreateAccountPressed)
+          .removeListRowFormatting()
+      } else {
+        Text("Sign Out")
+          .rowFormatting()
+          .anyButton(.highlight, action: onSignOutPressed)
+          .removeListRowFormatting()
+
+        Text("DeleteAccount")
+          .rowFormatting(isDestructive: true)
+          .anyButton(.highlight, action: onSignOutPressed)
+          .removeListRowFormatting()
+      }
+    } header: {
+      Text("Account")
+    }
+  }
+
+  var purchasesSection: some View {
+    Section {
+      HStack(spacing: 8) {
+        Text("Account Status: \(isPremium ? "Premium" : "Basic")")
+        Spacer()
+        Text("\(isPremium ? "MANAGE" : "UPGRADE")")
+          .badgeButton()
+      }
+      .rowFormatting()
+      .anyButton(.highlight, action: onAccountStatusPressed)
+      .removeListRowFormatting()
+    } header: {
+      Text("Purchases")
+    }
+  }
+
+  var appSection: some View {
+    Section {
+      HStack(spacing: 8) {
+        Text("Version")
+        Spacer()
+        Text(Bundle.main.releaseVersionNumber)
+          .foregroundStyle(.secondary)
+      }
+      .rowFormatting()
+      .removeListRowFormatting()
+
+      HStack(spacing: 8) {
+        Text("Build Number")
+        Spacer()
+        Text(Bundle.main.buildVersionNumber)
+          .foregroundStyle(.secondary)
+      }
+      .rowFormatting()
+      .removeListRowFormatting()
+
+      Text("Contact us")
+        .foregroundStyle(.blue)
+        .rowFormatting()
+        .anyButton(.highlight, action: onContactPressed)
+        .removeListRowFormatting()
+
+    } header: {
+      Text("Application")
+    } footer: {
+      Text("Powered By Unicorns and Rainbows 🌈🦄\nBuilt by www.daymein.info")
+        .baselineOffset(6)
+    }
+  }
+
+}
+
+// MARK: - Private functions
 
 private extension SettingsView {
 
   func onSignOutPressed() {
-    // do some logic to sign user out of app
+    // do some logic to sign out user
     dismiss()
     Task {
       try? await Task.sleep(for: .seconds(0.3))
@@ -37,8 +127,36 @@ private extension SettingsView {
     }
   }
 
+  func onCreateAccountPressed() {
+    showCreateAccountView = true
+  }
+
+  func onAccountStatusPressed() {
+    // do some logic to update or check account status
+  }
+
+  func onContactPressed() {
+    // do some logic to contact us
+  }
+
+}
+
+// MARK: - Local View extensions
+
+fileprivate extension View {
+
+  func rowFormatting(isDestructive: Bool = false) -> some View {
+    self
+      .foregroundStyle(isDestructive ? .red : .primary)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .padding(.vertical, 12)
+      .padding(.horizontal, 16)
+      .background(Color(uiColor: .systemBackground))
+  }
+
 }
 
 #Preview {
   SettingsView()
+    .environment(AppState())
 }

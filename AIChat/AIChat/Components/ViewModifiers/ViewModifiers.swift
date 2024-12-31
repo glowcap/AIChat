@@ -19,6 +19,16 @@ extension View {
       .cornerRadius(16)
   }
 
+  func badgeButton() -> some View {
+    self
+      .font(.caption)
+      .foregroundStyle(.white)
+      .padding(.horizontal, 8)
+      .padding(.vertical, 6)
+      .background(.blue)
+      .cornerRadius(6)
+  }
+
   func tappableBackground() -> some View {
     background(Color.black.opacity(0.001))
   }
