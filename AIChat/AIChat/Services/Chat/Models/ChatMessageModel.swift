@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatMessageModel {
+struct ChatMessageModel: Identifiable {
   let id: String
   let chatId: String
   let authorId: String?
@@ -45,44 +45,45 @@ extension ChatMessageModel {
   static var mock: ChatMessageModel {
     mocks[0]
   }
-
+  // swiftlint:disable line_length
   static var mocks: [ChatMessageModel] {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
 
     return [
-         ChatMessageModel(
-           id: "msg_1",
-           chatId: "mock_chat_1",
-           authorId: "user1",
-           content: "Hello, how are you?",
-           seenByIds: ["user2", "user3"],
-           dateCreated: dateFormatter.date(from: "2024/01/01 10:15")
-         ),
-         ChatMessageModel(
-           id: "msg_2",
-           chatId: "mock_chat_1",
-           authorId: "user2",
-           content: "I'm doing well, thanks! And you?",
-           seenByIds: ["user1", "user3"],
-           dateCreated: dateFormatter.date(from: "2024/01/01 10:30")
-         ),
-         ChatMessageModel(
-           id: "msg_3",
-           chatId: "mock_chat_1",
-           authorId: "user3",
-           content: "Hey! Long time no see.",
-           seenByIds: ["user4"],
-           dateCreated: dateFormatter.date(from: "2024/03/10 14:00")
-         ),
-         ChatMessageModel(
-           id: "msg_4",
-           chatId: "mock_chat_1",
-           authorId: "user4",
-           content: "Hi everyone! I just joined.",
-           seenByIds: ["user1", "user2"],
-           dateCreated: dateFormatter.date(from: "2024/04/12 16:45")
-         )
-       ]
+      ChatMessageModel(
+        id: "msg_1",
+        chatId: "mock_chat_1",
+        authorId: "user1",
+        content: "How's it going, homie?",
+        seenByIds: ["user2", "user1"],
+        dateCreated: dateFormatter.date(from: "2024/01/01 10:15")
+      ),
+      ChatMessageModel(
+        id: "msg_2",
+        chatId: "mock_chat_1",
+        authorId: "user2",
+        content: "Not too bad. Work sucks, but that's nothing new",
+        seenByIds: ["user1", "user2"],
+        dateCreated: dateFormatter.date(from: "2024/01/01 10:30")
+      ),
+      ChatMessageModel(
+        id: "msg_3",
+        chatId: "mock_chat_1",
+        authorId: "user1",
+        content: "💯 There's always a fire to put out. Last week, we had a sudden ask from the C-levels and had to drop everything to get it in before code freeze. It was really just a want, but required features and bug fixes still needed to get in as well. The development team ended up working over the weekend. But hey, they said thanks and probably raised the bar for our ticket count for future sprints",
+        seenByIds: ["user1, user2"],
+        dateCreated: dateFormatter.date(from: "2024/03/10 14:00")
+      ),
+      ChatMessageModel(
+        id: "msg_4",
+        chatId: "mock_chat_1",
+        authorId: "user2",
+        content: "Sorry to hear that, but I'm not really here to listen to you complain 🫠",
+        seenByIds: ["user2"],
+        dateCreated: dateFormatter.date(from: "2024/04/12 16:45")
+      )
+    ]
   }
+  // swiftlint:enable line_length
 }

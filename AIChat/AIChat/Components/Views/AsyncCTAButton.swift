@@ -30,9 +30,9 @@ struct AsyncCTAButton: View {
 }
 
 private struct PreviewView: View {
-  
+
   @State private var isLoading: Bool = false
-  
+
   var body: some View {
     AsyncCTAButton(
       title: "Start Working",
@@ -44,11 +44,10 @@ private struct PreviewView: View {
         }
       }
   }
-  
+
 }
 
 #Preview {
   PreviewView()
     .padding(16)
-
 }

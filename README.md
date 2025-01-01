@@ -33,6 +33,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 ### Module 4: Feature Flow
 
  1. CreateAvatarView
+ 2. ChatView: ChatBubbleView
 
 ## Things to do
 
