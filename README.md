@@ -34,6 +34,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 
  1. CreateAvatarView
  2. ChatView: ChatBubbleView
+ 3. ChatView: ScrollView
 
 ## Things to do
 
@@ -41,7 +42,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] replace SDWebImageSwiftUI with native solution
 - [ ] accessibility
 - [ ] localize Strings
-- [ ] padding constants
+- [ ] assign Constants
 - [ ] CarouselView support for viewAligned non-centered items
 - [ ] inline docs
 - [ ] clean up ViewModifiers.swift
