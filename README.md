@@ -36,6 +36,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
  2. ChatView: ChatBubbleView
  3. ChatView: ScrollView
  4. AnyAppAlert: Custom Alerts
+ 5. ModalSupportView: Custom Modals
 
 ## Things to do
 
@@ -48,3 +49,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] inline docs
 - [ ] clean up ViewModifiers.swift
 - [ ] implement profanity filter
+- [ ] ModalSupportView background color dark mode support
