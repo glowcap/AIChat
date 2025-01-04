@@ -12,4 +12,9 @@ struct Constants {
   static let randomImage = "https://picsum.photos/600/600"
   static let privacyPolicyUrl = "https://apple.com"
   static let termsOfServiceUrl = "https://apple.com"
+
+  static let profanity: [String] = [
+    "shit", "bitch", "ass"
+  ]
+
 }

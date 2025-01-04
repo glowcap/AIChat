@@ -14,8 +14,10 @@ struct ChatView: View {
   @State private var currentUser: UserModel? = .mock
   @State private var textFieldText: String = ""
 
-  @State private var showChatSettings: Bool = false
   @State private var scrollPosition: String?
+
+  @State private var showChatSettings: AnyAppAlert?
+  @State private var showAlert: AnyAppAlert?
 
   var body: some View {
     VStack(spacing: 0) {
@@ -32,16 +34,8 @@ struct ChatView: View {
           .anyButton(action: onChatSettingsPressed)
       }
     }
-    .confirmationDialog(
-      "",
-      isPresented: $showChatSettings,
-      actions: {
-        Button("Report User/Chat", role: .destructive, action: {})
-        Button("Delete Chat", role: .destructive, action: {})
-      }, message: {
-        Text("What would you like do?")
-      }
-    )
+    .showCustomAlert(type: .confirmationDialog, alert: $showChatSettings)
+    .showCustomAlert(alert: $showAlert)
   }
 
 }
@@ -115,10 +109,8 @@ private extension ChatView {
 
 private extension ChatView {
 
-  func onSendMessagePressed() {
-    let content = textFieldText
-
-    let message = ChatMessageModel(
+  func createChatMessage(content: String) -> ChatMessageModel {
+    ChatMessageModel(
       id: UUID().uuidString,
       chatId: UUID().uuidString,
       authorId: currentUser?.userId,
@@ -126,13 +118,38 @@ private extension ChatView {
       seenByIds: nil,
       dateCreated: .now
     )
+  }
+
+  func pushMessage(_ message: ChatMessageModel) {
     chatMessages.append(message)
     scrollPosition = message.id
     textFieldText = ""
   }
 
+  func onSendMessagePressed() {
+    let content = textFieldText
+    do {
+      try TextValidationHelper.textIsValid(content)
+      let message = createChatMessage(content: content)
+      pushMessage(message)
+    } catch {
+      showAlert = AnyAppAlert(error: error)
+    }
+  }
+
   func onChatSettingsPressed() {
-    showChatSettings = true
+    showChatSettings = AnyAppAlert(
+      title: "",
+      subtitle: "What would you like to do?",
+      buttons: {
+        AnyView(
+          Group {
+            Button("Report User/Chat", role: .destructive) { }
+            Button("Delete Chat", role: .destructive) { }
+          }
+        )
+      }
+    )
   }
 
 }

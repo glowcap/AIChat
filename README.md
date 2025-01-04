@@ -35,6 +35,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
  1. CreateAvatarView
  2. ChatView: ChatBubbleView
  3. ChatView: ScrollView
+ 4. AnyAppAlert: Custom Alerts
 
 ## Things to do
 
@@ -46,3 +47,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] CarouselView support for viewAligned non-centered items
 - [ ] inline docs
 - [ ] clean up ViewModifiers.swift
+- [ ] implement profanity filter
