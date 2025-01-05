@@ -13,8 +13,10 @@ struct ExploreView: View {
   @State private var categories: [AvatarType] = AvatarType.allCases
   @State private var popularAvatars: [AvatarModel] = AvatarModel.mocks
 
+  @State private var path: [NavigationPathOption] = []
+
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $path) {
       List {
         featuredSection
         categorySection
@@ -22,8 +24,10 @@ struct ExploreView: View {
       }
       .listStyle(.plain)
       .navigationTitle("Explore")
+      .coreModuleNavigationDestination(path: $path)
     }
   }
+
 }
 
 // MARK: - Subviews
@@ -41,7 +45,7 @@ private extension ExploreView {
             imageName: avatar.profileImageName
           )
           .anyButton {
-            // action
+            onAvatarPressed(avatar: avatar)
           }
           .padding(.horizontal, 16)
         }
@@ -61,10 +65,12 @@ private extension ExploreView {
         ScrollView(.horizontal) {
           HStack(spacing: 12) {
             ForEach(categories, id: \.self) { category in
-              CategoryCellView(
-                title: category.categoryName,
-                imageName: Constants.randomImage
-              )
+              if let imageName = getCategoryImageName(category) {
+                CategoryCellView(title: category.categoryName, imageName: imageName)
+                  .anyButton {
+                    onCategoryPressed(category: category, imageName: imageName)
+                  }
+              }
             }
           }
         }
@@ -88,13 +94,33 @@ private extension ExploreView {
           subtitle: avatar.description
         )
         .anyButton(.highlight) {
-          // action
+          onAvatarPressed(avatar: avatar)
         }
         .removeListRowFormatting()
       }
     } header: {
       Text("Popular")
     }
+  }
+
+}
+
+// MARK: - Private functions
+
+private extension ExploreView {
+
+  func onAvatarPressed(avatar: AvatarModel) {
+    path.append(.chat(avatarId: avatar.avatarId))
+  }
+
+  func onCategoryPressed(category: AvatarType, imageName: String) {
+    path.append(.category(category: category, imageName: imageName))
+  }
+
+  func getCategoryImageName(_ category: AvatarType ) -> String? {
+    popularAvatars
+      .first(where: { $0.avatarType == category })?
+      .profileImageName
   }
 
 }

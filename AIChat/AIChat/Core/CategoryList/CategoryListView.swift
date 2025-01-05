@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryListView: View {
 
+  @Binding var path: [NavigationPathOption]
   var category: AvatarType = .alien
   var imageName: String = Constants.randomImage
 
@@ -53,18 +54,31 @@ private extension CategoryListView {
   }
 
   var avatarListSection: some View {
-    ForEach(avatars, id: \.self) {
+    ForEach(avatars, id: \.self) { avatar in
       CustomListCellView(
-        imageName: $0.profileImageName,
-        title: $0.name,
-        subtitle: $0.description
+        imageName: avatar.profileImageName,
+        title: avatar.name,
+        subtitle: avatar.description
       )
+      .anyButton(.highlight) {
+        onAvatarPressed(avatar: avatar)
+      }
       .removeListRowFormatting()
     }
   }
 
 }
 
+// MARK: - Private functions
+
+private extension CategoryListView {
+
+  func onAvatarPressed(avatar: AvatarModel) {
+    path.append(.chat(avatarId: avatar.avatarId))
+  }
+
+}
+
 #Preview {
-  CategoryListView()
+  CategoryListView(path: .constant([]))
 }

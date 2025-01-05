@@ -38,6 +38,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
  4. AnyAppAlert: Custom Alerts
  5. ModalSupportView: Custom Modals
  6. CategoryListView
+ 7. Routing: Navigation Destinations
 
 ## Things to do
 
