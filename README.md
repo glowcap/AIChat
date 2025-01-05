@@ -37,6 +37,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
  3. ChatView: ScrollView
  4. AnyAppAlert: Custom Alerts
  5. ModalSupportView: Custom Modals
+ 6. CategoryListView
 
 ## Things to do
 

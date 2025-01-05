@@ -37,6 +37,17 @@ enum AvatarType: String, CaseIterable, Hashable {
     return formattedResult
   }
 
+  var easterEggIcon: String {
+    switch self {
+    case .alien: "👽"
+    case .bird: "🐤"
+    case .cat: "😺"
+    case .dog: "🐶"
+    case .man: "🧔🏽‍♂️"
+    case .woman: "👩🏼‍🦰"
+    }
+  }
+
 }
 
 enum AvatarAction: String, CaseIterable, Hashable {
