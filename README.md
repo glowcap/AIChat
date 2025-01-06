@@ -39,6 +39,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
  5. ModalSupportView: Custom Modals
  6. CategoryListView
  7. Routing: Navigation Destinations
+ 8. ChatsView: Recent Avatars
 
 ## Things to do
 
@@ -52,3 +53,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] clean up ViewModifiers.swift
 - [ ] implement profanity filter
 - [ ] ModalSupportView background color dark mode support
+- [ ] fix ChatsView Recents clipping issue
