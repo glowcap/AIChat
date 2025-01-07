@@ -52,6 +52,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 ### Section 1: Manage Authentication
 
 1. Set up Firebase
+2. FirebaseAuthService: Anonymous
 
 ## Things to do
 
