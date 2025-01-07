@@ -4,7 +4,11 @@ AIChat allows users to generate AI avatars to chat with.
 ## Branching
 Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 01 Part: 01). Use the following to reference specific branches 
 
-### Module 1: Project Setup 
+---
+
+#### Module 1: View Layers
+
+### Section 1: Project Setup 
 
 1. Project Settings, Github, App Icon, & Launch Screen
 2. Adding SwiftLint
@@ -12,13 +16,13 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 4. Setup TabBar and NavigationStacks
 5. Adding root App State to the Environment
 
-### Module 2: Onboarding Flow
+### Section 2: Onboarding Flow
 
 1. WelcomeView & ImageLoaderView
 2. OnboardingIntroView & OnboardingColorView
 3. OnboardingCompletedView
 
-### Module 3: TabBar Flow
+### Section 3: TabBar Flow
 
 1. ExploreView: HeroCellView
 2. AvatarModel
@@ -30,7 +34,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 8. UserModel & ProfileView
 9. CreateAccountView & SettingsView
 
-### Module 4: Feature Flow
+### Section 4: Feature Flow
 
  1. CreateAvatarView
  2. ChatView: ChatBubbleView
@@ -40,6 +44,14 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
  6. CategoryListView
  7. Routing: Navigation Destinations
  8. ChatsView: Recent Avatars
+
+---
+
+#### Module 2: Data Layers
+
+### Section 1: Manage Authentication
+
+1. Set up Firebase
 
 ## Things to do
 
@@ -54,3 +66,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] implement profanity filter
 - [ ] ModalSupportView background color dark mode support
 - [ ] fix ChatsView Recents clipping issue
+- [ ] move to Supabase

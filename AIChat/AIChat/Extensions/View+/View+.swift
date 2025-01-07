@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-  
+
   /// Upon satisfying the condition, the transform function is performed to redraw the view
   /// - Parameters:
   ///   - condition: Condition to be met to trigger transform function

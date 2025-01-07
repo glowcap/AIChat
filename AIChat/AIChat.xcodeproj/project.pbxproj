@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A6C76D92D2D56FE00D45E80 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4A6C76D82D2D56FE00D45E80 /* FirebaseAuth */; };
 		4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */,
+				4A6C76D92D2D56FE00D45E80 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +134,7 @@
 			name = AIChat;
 			packageProductDependencies = (
 				4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */,
+				4A6C76D82D2D56FE00D45E80 /* FirebaseAuth */,
 			);
 			productName = AIChat;
 			productReference = 4A2EB0EC2D20396F0058DAAF /* AIChat.app */;
@@ -217,6 +220,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A2EB0ED2D20396F0058DAAF /* Products */;
@@ -451,6 +455,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AIChat/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -485,6 +490,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AIChat/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -629,6 +635,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
 		4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -640,6 +654,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4A6C76D82D2D56FE00D45E80 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
