@@ -26,6 +26,10 @@ struct AppView: View {
     .task {
       await checkUserStatus()
     }
+    .onChange(of: appState.showTabBar) { _, showTabBar in
+      guard !showTabBar else { return }
+      Task { await checkUserStatus() }
+    }
   }
 
 }

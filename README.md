@@ -53,6 +53,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 
 1. Set up Firebase
 2. FirebaseAuthService: Anonymous
+3. FirebaseAuthService: Apple
 
 ## Things to do
 

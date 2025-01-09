@@ -5,7 +5,6 @@
 //  Created by Daymein Gregorio on 1/7/25.
 //
 
-import FirebaseAuth
 import SwiftUI
 
 struct UserAuthInfo: Sendable {
@@ -27,14 +26,6 @@ struct UserAuthInfo: Sendable {
     self.isAnonymous = isAnonymous
     self.creationDate = creationDate
     self.lastSignInDate = lastSignInDate
-  }
-
-  init(user: User) {
-    self.uid = user.uid
-    self.email = user.email
-    self.isAnonymous = user.isAnonymous
-    self.creationDate = user.metadata.creationDate
-    self.lastSignInDate = user.metadata.lastSignInDate
   }
 
 }
