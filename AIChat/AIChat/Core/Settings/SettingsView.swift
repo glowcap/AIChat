@@ -195,7 +195,26 @@ fileprivate extension View {
 
 }
 
-#Preview {
+#Preview("Anonymous") {
   SettingsView()
+    .environment(
+      \.authService,
+       MockAuthService(user: UserAuthInfo.mock(isAnonymous: true))
+    )
+    .environment(AppState())
+}
+
+#Preview("Signed In") {
+  SettingsView()
+    .environment(
+      \.authService,
+       MockAuthService(user: UserAuthInfo.mock())
+    )
+    .environment(AppState())
+}
+
+#Preview("No Auth") {
+  SettingsView()
+    .environment(\.authService, MockAuthService(user: nil))
     .environment(AppState())
 }

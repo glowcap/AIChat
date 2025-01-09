@@ -6,14 +6,10 @@
 //
 
 import FirebaseAuth
-import SwiftUI
+import Foundation
 import SignInAppleAsync
 
-extension EnvironmentValues {
-  @Entry var authService: FirebaseAuthService = .init()
-}
-
-struct FirebaseAuthService {
+struct FirebaseAuthService: AuthService {
 
   typealias AuthInfo = (user: UserAuthInfo, isNewUser: Bool)
 
@@ -103,6 +99,7 @@ private extension FirebaseAuthService {
 }
 
 // MARK: - AuthDataResult Ext
+
 private extension AuthDataResult {
 
   var asAuthInfo: (user: UserAuthInfo, isNewUser: Bool) {
