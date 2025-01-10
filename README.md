@@ -55,6 +55,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 2. FirebaseAuthService: Anonymous
 3. FirebaseAuthService: Apple
 4. MockAuthService
+5. AuthManager
 
 ## Things to do
 
