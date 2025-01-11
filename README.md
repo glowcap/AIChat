@@ -61,6 +61,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 ### Section 2: Manage Users
 
 1. UserManager: Set Up
+2. UserManager: Syncing
 
 ## Things to do
 

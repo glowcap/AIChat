@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
   @Environment(AuthManager.self) private var authManager
+  @Environment(UserManager.self) private var userManager
   @Environment(\.dismiss) private var dismiss
   @Environment(AppState.self) private var root
 
@@ -125,7 +126,12 @@ private extension SettingsView {
 private extension SettingsView {
 
   func onSignOutPressed() {
-    tryAndDismiss(authManager.signOut)
+    tryAndDismiss(signOut)
+  }
+
+  func signOut() throws {
+    try authManager.signOut()
+    userManager.signOut()
   }
 
   func onDeleteAccountPressed() {
@@ -143,7 +149,12 @@ private extension SettingsView {
   }
 
   func onDeleteAccountConfirmed() {
-    tryAndDismiss(authManager.deleteAccount)
+    tryAndDismiss(deleteAccount)
+  }
+
+  func deleteAccount() async throws {
+    try await authManager.deleteAccount()
+    try await userManager.deleteCurrentUser()
   }
 
   func tryAndDismiss(_ action: @escaping () async throws -> Void) {
@@ -200,6 +211,7 @@ fileprivate extension View {
     .environment(AuthManager(
       service: MockAuthService(user: UserAuthInfo.mock(isAnonymous: true))
     ))
+    .environment(UserManager(service: MockUserService(user: .mock)))
     .environment(AppState())
 }
 
@@ -208,6 +220,7 @@ fileprivate extension View {
     .environment(AuthManager(
       service: MockAuthService(user: UserAuthInfo.mock())
     ))
+    .environment(UserManager(service: MockUserService(user: .mock)))
     .environment(AppState())
 }
 
@@ -216,5 +229,6 @@ fileprivate extension View {
     .environment(AuthManager(
       service: MockAuthService(user: nil)
     ))
+    .environment(UserManager(service: MockUserService(user: nil)))
     .environment(AppState())
 }

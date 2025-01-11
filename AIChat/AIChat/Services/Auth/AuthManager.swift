@@ -48,17 +48,25 @@ class AuthManager {
     auth = nil
   }
 
-  private func addAuthListener() {
+}
+
+// MARK: - Private functions
+
+private extension AuthManager {
+
+  func addAuthListener() {
     Task {
       for await value in service
         .addAuthenticatedUserListener(onListenerAttached: { self.listener = $0 }) {
           self.auth = value
-        print("Auth listener success: \(value?.uid ?? "no uid")")
+        print("👂🔐 Auth listener success: \(value?.uid ?? "no uid")")
       }
     }
   }
 
 }
+
+// MARK: - AuthManager Error
 
 extension AuthManager {
 

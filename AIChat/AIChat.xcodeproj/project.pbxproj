@@ -11,6 +11,7 @@
 		4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */; };
 		4A937AE22D2EAADC00DC36D9 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AE12D2EAADC00DC36D9 /* SignInAppleAsync */; };
 		4A937AF02D32B14C00DC36D9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */; };
+		4A937AFC2D32BCB400DC36D9 /* SwiftfulFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AFB2D32BCB400DC36D9 /* SwiftfulFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 				4A937AF02D32B14C00DC36D9 /* FirebaseFirestore in Frameworks */,
 				4A6C76D92D2D56FE00D45E80 /* FirebaseAuth in Frameworks */,
 				4A937AE22D2EAADC00DC36D9 /* SignInAppleAsync in Frameworks */,
+				4A937AFC2D32BCB400DC36D9 /* SwiftfulFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +151,7 @@
 				4A6C76D82D2D56FE00D45E80 /* FirebaseAuth */,
 				4A937AE12D2EAADC00DC36D9 /* SignInAppleAsync */,
 				4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */,
+				4A937AFB2D32BCB400DC36D9 /* SwiftfulFirestore */,
 			);
 			productName = AIChat;
 			productReference = 4A2EB0EC2D20396F0058DAAF /* AIChat.app */;
@@ -236,6 +239,7 @@
 				4A73B7942D217F1D00B0CE96 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4A937AE02D2EAADC00DC36D9 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */,
+				4A937AFA2D32BCB400DC36D9 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A2EB0ED2D20396F0058DAAF /* Products */;
@@ -674,6 +678,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		4A937AFA2D32BCB400DC36D9 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulFirestore";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -696,6 +708,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		4A937AFB2D32BCB400DC36D9 /* SwiftfulFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A937AFA2D32BCB400DC36D9 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */;
+			productName = SwiftfulFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
