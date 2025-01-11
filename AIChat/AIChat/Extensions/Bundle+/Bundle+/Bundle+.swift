@@ -9,10 +9,10 @@ import Foundation
 
 extension Bundle {
 
-  var releaseVersionNumber: String {
+  var appVersion: String {
       infoDictionary?["CFBundleShortVersionString"] as? String ?? "Not Found"
   }
-  var buildVersionNumber: String {
+  var buildVersion: String {
       infoDictionary?["CFBundleVersion"] as? String ?? "Not Found"
   }
 

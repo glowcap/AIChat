@@ -10,6 +10,7 @@
 		4A6C76D92D2D56FE00D45E80 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4A6C76D82D2D56FE00D45E80 /* FirebaseAuth */; };
 		4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */; };
 		4A937AE22D2EAADC00DC36D9 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AE12D2EAADC00DC36D9 /* SignInAppleAsync */; };
+		4A937AF02D32B14C00DC36D9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A73B7962D217F1D00B0CE96 /* SDWebImageSwiftUI in Frameworks */,
+				4A937AF02D32B14C00DC36D9 /* FirebaseFirestore in Frameworks */,
 				4A6C76D92D2D56FE00D45E80 /* FirebaseAuth in Frameworks */,
 				4A937AE22D2EAADC00DC36D9 /* SignInAppleAsync in Frameworks */,
 			);
@@ -100,6 +102,7 @@
 				4A2EB0EE2D20396F0058DAAF /* AIChat */,
 				4A2EB1002D2039710058DAAF /* AIChatTests */,
 				4A2EB10A2D2039710058DAAF /* AIChatUITests */,
+				4A937AEE2D32B14C00DC36D9 /* Frameworks */,
 				4A2EB0ED2D20396F0058DAAF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +115,13 @@
 				4A2EB1072D2039710058DAAF /* AIChatUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		4A937AEE2D32B14C00DC36D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +148,7 @@
 				4A73B7952D217F1D00B0CE96 /* SDWebImageSwiftUI */,
 				4A6C76D82D2D56FE00D45E80 /* FirebaseAuth */,
 				4A937AE12D2EAADC00DC36D9 /* SignInAppleAsync */,
+				4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */,
 			);
 			productName = AIChat;
 			productReference = 4A2EB0EC2D20396F0058DAAF /* AIChat.app */;
@@ -680,6 +691,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A937AE02D2EAADC00DC36D9 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */;
 			productName = SignInAppleAsync;
+		};
+		4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

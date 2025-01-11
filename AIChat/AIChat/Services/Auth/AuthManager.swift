@@ -11,8 +11,6 @@ import SwiftUI
 @Observable
 class AuthManager {
 
-  typealias AuthInfo = (user: UserAuthInfo, isNewUser: Bool)
-
   private let service: AuthService
 
   private(set) var auth: UserAuthInfo?

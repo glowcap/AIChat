@@ -57,6 +57,11 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 4. MockAuthService
 5. AuthManager
 
+
+### Section 2: Manage Users
+
+1. UserManager: Set Up
+
 ## Things to do
 
 - [ ] iOS 18+ branch

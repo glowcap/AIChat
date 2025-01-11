@@ -89,7 +89,7 @@ private extension SettingsView {
       HStack(spacing: 8) {
         Text("Version")
         Spacer()
-        Text(Bundle.main.releaseVersionNumber)
+        Text(Bundle.main.appVersion)
           .foregroundStyle(.secondary)
       }
       .rowFormatting()
@@ -98,7 +98,7 @@ private extension SettingsView {
       HStack(spacing: 8) {
         Text("Build Number")
         Spacer()
-        Text(Bundle.main.buildVersionNumber)
+        Text(Bundle.main.buildVersion)
           .foregroundStyle(.secondary)
       }
       .rowFormatting()

@@ -8,7 +8,6 @@
 import SwiftUI
 
 protocol AuthService: Sendable {
-  typealias AuthInfo = (user: UserAuthInfo, isNewUser: Bool)
 
   func addAuthenticatedUserListener(
     onListenerAttached: (any NSObjectProtocol) -> Void

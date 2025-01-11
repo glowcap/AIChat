@@ -11,8 +11,6 @@ import SignInAppleAsync
 
 struct FirebaseAuthService: AuthService {
 
-  typealias AuthInfo = (user: UserAuthInfo, isNewUser: Bool)
-
   func addAuthenticatedUserListener(
     onListenerAttached: (any NSObjectProtocol) -> Void
   ) -> AsyncStream<UserAuthInfo?> {
@@ -118,11 +116,11 @@ private extension FirebaseAuthService {
 
 private extension AuthDataResult {
 
-  var asAuthInfo: (user: UserAuthInfo, isNewUser: Bool) {
-    let user = UserAuthInfo(user: user)
-    let isNewUser = additionalUserInfo?.isNewUser ?? true
-
-    return (user, isNewUser)
+  var asAuthInfo: AuthInfo {
+    AuthInfo(
+      user: UserAuthInfo(user: user),
+      isNewUser: additionalUserInfo?.isNewUser ?? true
+    )
   }
 
 }

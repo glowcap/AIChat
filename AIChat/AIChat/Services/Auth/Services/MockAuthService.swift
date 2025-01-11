@@ -29,12 +29,12 @@ struct MockAuthService: AuthService {
 
   func signInAnonymously() async throws -> AuthInfo {
     let user = UserAuthInfo.mock(isAnonymous: true)
-    return (user: user, isNewUser: true)
+    return AuthInfo(user: user, isNewUser: true)
   }
 
   func signInApple() async throws -> AuthInfo {
     let user = UserAuthInfo.mock()
-    return (user: user, isNewUser: false)
+    return AuthInfo(user: user, isNewUser: false)
   }
 
   func signOut() throws { }
