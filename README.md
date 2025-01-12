@@ -2,7 +2,7 @@
 AIChat allows users to generate AI avatars to chat with.
 
 ## Branching
-Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 01 Part: 01). Use the following to reference specific branches 
+Branches are broken into modules, sections, and parts. Naming follows moduleX/sXXpXX (ie. Section: 01 Part: 01). Use the following to reference specific branches 
 
 ---
 
@@ -64,6 +64,10 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 2. UserManager: Syncing
 3. UserManager: Saving
 
+### Section 3: Manage Avatars
+
+1. AIManager: Generate Images
+
 ## Things to do
 
 - [ ] iOS 18+ branch
@@ -78,3 +82,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] ModalSupportView background color dark mode support
 - [ ] fix ChatsView Recents clipping issue
 - [ ] move to Supabase
+- [ ] salt persisted userModel

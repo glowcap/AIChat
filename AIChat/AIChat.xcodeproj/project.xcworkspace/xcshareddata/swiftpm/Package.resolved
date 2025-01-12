@@ -1,5 +1,5 @@
 {
-  "originHash" : "c55f42f5e4b19f52fe591a32e2ed8a7e7ee1e1f678d12f6edbf15ece3d6cbd32",
+  "originHash" : "e6b86599e9871c9c22279b5f45fdbefbb953b163fc4e6520a0c2853ecf4a8c05",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -107,6 +107,15 @@
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:MacPaw/OpenAI.git",
+      "state" : {
+        "revision" : "843e087929aa806adb611dbca93f9a4a7f28be04",
+        "version" : "0.3.0"
       }
     },
     {

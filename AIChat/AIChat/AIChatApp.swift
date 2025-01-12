@@ -17,8 +17,9 @@ struct AIChatApp: App {
   var body: some Scene {
     WindowGroup {
       AppView()
-        .environment(delegate.authManager)
-        .environment(delegate.userManager)
+        .environment(delegate.dependencies.authManager)
+        .environment(delegate.dependencies.userManager)
+        .environment(delegate.dependencies.aiManager)
     }
   }
 
@@ -26,8 +27,7 @@ struct AIChatApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 
-  var authManager: AuthManager!
-  var userManager: UserManager!
+  var dependencies: Dependencies!
 
   func application(
     _ application: UIApplication,
@@ -43,10 +43,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //    https://www.jessesquires.com/blog/2024/09/09/swift-observable-macro/
 //    StackOverflow Observable being re-init:
 //    https://stackoverflow.com/questions/77311315/observable-is-being-re-init-every-time-view-is-modified-in-swiftui
-    authManager = AuthManager(service: FirebaseAuthService())
-    userManager = UserManager(services: ProductionUserServices())
+    dependencies = Dependencies()
 
     return true
   }
 
+}
+
+@MainActor
+struct Dependencies {
+  let authManager: AuthManager
+  let userManager: UserManager
+  let aiManager: AIManager
+
+  init() {
+    authManager = AuthManager(service: FirebaseAuthService())
+    userManager = UserManager(services: ProductionUserServices())
+    aiManager = AIManager(service: OpenAIService())
+  }
 }

@@ -17,4 +17,8 @@ struct Constants {
     "shit", "bitch", "ass"
   ]
 
+  /// API key for OpenAI
+  /// - Important: You'll need to generate your own key at https://platform.openai.com/
+  static let openAiToken = APIKeys.openAiKey
+
 }

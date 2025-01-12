@@ -12,6 +12,7 @@
 		4A937AE22D2EAADC00DC36D9 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AE12D2EAADC00DC36D9 /* SignInAppleAsync */; };
 		4A937AF02D32B14C00DC36D9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */; };
 		4A937AFC2D32BCB400DC36D9 /* SwiftfulFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937AFB2D32BCB400DC36D9 /* SwiftfulFirestore */; };
+		4A937B172D34124400DC36D9 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 4A937B162D34124400DC36D9 /* OpenAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 				4A937AF02D32B14C00DC36D9 /* FirebaseFirestore in Frameworks */,
 				4A6C76D92D2D56FE00D45E80 /* FirebaseAuth in Frameworks */,
 				4A937AE22D2EAADC00DC36D9 /* SignInAppleAsync in Frameworks */,
+				4A937B172D34124400DC36D9 /* OpenAI in Frameworks */,
 				4A937AFC2D32BCB400DC36D9 /* SwiftfulFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +154,7 @@
 				4A937AE12D2EAADC00DC36D9 /* SignInAppleAsync */,
 				4A937AEF2D32B14C00DC36D9 /* FirebaseFirestore */,
 				4A937AFB2D32BCB400DC36D9 /* SwiftfulFirestore */,
+				4A937B162D34124400DC36D9 /* OpenAI */,
 			);
 			productName = AIChat;
 			productReference = 4A2EB0EC2D20396F0058DAAF /* AIChat.app */;
@@ -240,6 +243,7 @@
 				4A6C76D72D2D56FE00D45E80 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4A937AE02D2EAADC00DC36D9 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */,
 				4A937AFA2D32BCB400DC36D9 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */,
+				4A937B152D34124400DC36D9 /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A2EB0ED2D20396F0058DAAF /* Products */;
@@ -686,6 +690,14 @@
 				minimumVersion = 11.0.1;
 			};
 		};
+		4A937B152D34124400DC36D9 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -713,6 +725,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A937AFA2D32BCB400DC36D9 /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */;
 			productName = SwiftfulFirestore;
+		};
+		4A937B162D34124400DC36D9 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A937B152D34124400DC36D9 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

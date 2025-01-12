@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateAvatarView: View {
 
+  @Environment(AIManager.self) var aiManager
   @Environment(\.dismiss) var dismiss
 
   @State private var avatarName: String = ""
@@ -98,7 +99,7 @@ private extension CreateAvatarView {
             .opacity(isGeneratingAvatar ? 0 : 1)
 
           ProgressView()
-            .tint(.accentColor)
+            .tint(.accent)
             .opacity(isGeneratingAvatar ? 1 : 0)
         }
         .disabled(isGeneratingAvatar || avatarName.isEmpty)
@@ -113,7 +114,6 @@ private extension CreateAvatarView {
                   .scaledToFill()
               }
             }
-              .padding(24)
           )
           .clipShape(Circle())
       }
@@ -157,8 +157,17 @@ private extension CreateAvatarView {
     isGeneratingAvatar = true
 
     Task {
-      try? await Task.sleep(for: .seconds(2))
-      generatedImage = UIImage(systemName: "person.fill")
+      do {
+        let prompt = AvatarDescriptionBuilder(
+          avatarType: avatarType,
+          avatarAction: avatarAction,
+          avatarLocation: avatarLocation
+        ).avatarDescription
+
+        generatedImage = try await aiManager.generateImage(input: prompt)
+      } catch {
+        print("⛔️Error generating image: \(error.localizedDescription)")
+      }
       isGeneratingAvatar = false
     }
   }
@@ -177,4 +186,5 @@ private extension CreateAvatarView {
 
 #Preview {
   CreateAvatarView()
+    .environment(AIManager(service: MockAIService()))
 }
