@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct MockUserService: UserService {
+struct MockUserService: RemoteUserService {
 
   let currentUser: UserModel?
 

@@ -6,33 +6,34 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
 
 @MainActor
 @Observable
 class UserManager {
 
-  private let service: UserService
+  private let remote: RemoteUserService
+  private let local: LocalUserPersistence
 
   private(set) var currentUser: UserModel?
 
   private var currentUserListener: ListenerRegistration?
 
-  init(service: UserService) {
-    self.service = service
-    self.currentUser = nil
+  init(services: UserServices) {
+    self.remote = services.remote
+    self.local = services.local
+    self.currentUser = local.getCurrentUser()
   }
 
   func logIn(auth: AuthInfo) throws {
     let creationVersion = auth.isNewUser ? Bundle.main.appVersion : nil
     let user = UserModel(auth: auth.user, creationVersion: creationVersion)
 
-    try service.saveUser(user: user)
+    try remote.saveUser(user: user)
     addCurrentUserListener(userId: user.userId)
   }
 
   func markOnboardingCompleteForCurrentUser(profileColorHex: String) async throws {
-    try await service.markOnboardingCompleted(
+    try await remote.markOnboardingCompleted(
       userId: currentUserId(),
       profileHexColor: profileColorHex
     )
@@ -45,7 +46,7 @@ class UserManager {
   }
 
   func deleteCurrentUser() async throws {
-    try await service.deleteUser(userId: currentUserId())
+    try await remote.deleteUser(userId: currentUserId())
     signOut()
   }
 
@@ -60,12 +61,13 @@ private extension UserManager {
 
     Task {
       do {
-        for try await value in service.streamUser(
+        for try await value in remote.streamUser(
           userId: userId,
           onListenerConfigured: { self.currentUserListener = $0 }
         ) {
           self.currentUser = value
           print("👂👤 User listener set: \(value.userId)")
+          try self.local.saveCurrentUser(user: value)
         }
       } catch {
         print("⛔️ Attach user listener failed: \(error.localizedDescription)")
@@ -78,6 +80,16 @@ private extension UserManager {
       throw UserManagerError.noUserId
     }
     return uid
+  }
+
+  func persistCurrrentUser() {
+    Task {
+      do {
+        try local.saveCurrentUser(user: currentUser)
+      } catch {
+        print("⛔️ Failed to persist current user: \(error.localizedDescription)")
+      }
+    }
   }
 
 }

@@ -70,6 +70,6 @@ private extension OnboardingCompletedView {
 
 #Preview {
   OnboardingCompletedView(selectedColor: .purple)
-    .environment(UserManager(service: MockUserService()))
+    .environment(UserManager(services: MockUserServices()))
     .environment(AppState())
 }

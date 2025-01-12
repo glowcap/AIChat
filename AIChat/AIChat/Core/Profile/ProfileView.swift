@@ -151,6 +151,6 @@ private extension ProfileView {
 
 #Preview {
   ProfileView()
-    .environment(UserManager(service: MockUserService(user: .mock)))
+    .environment(UserManager(services: MockUserServices(user: .mock)))
     .environment(AppState())
 }

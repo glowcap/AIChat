@@ -68,11 +68,11 @@ private extension AppView {
 #Preview("TabBar") {
   AppView(appState: AppState(showTabBar: true))
     .environment(AuthManager(service: MockAuthService(user: .mock())))
-    .environment(UserManager(service: MockUserService(user: .mock)))
+    .environment(UserManager(services: MockUserServices(user: .mock)))
 }
 
 #Preview("Onboarding") {
   AppView(appState: AppState(showTabBar: false))
     .environment(AuthManager(service: MockAuthService(user: nil)))
-    .environment(UserManager(service: MockUserService(user: nil)))
+    .environment(UserManager(services: MockUserServices()))
 }
