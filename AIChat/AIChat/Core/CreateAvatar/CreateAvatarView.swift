@@ -10,6 +10,8 @@ import SwiftUI
 struct CreateAvatarView: View {
 
   @Environment(AIManager.self) var aiManager
+  @Environment(AuthManager.self) var authManager
+  @Environment(AvatarManager.self) var avatarManager
   @Environment(\.dismiss) var dismiss
 
   @State private var avatarName: String = ""
@@ -21,6 +23,7 @@ struct CreateAvatarView: View {
   @State private var generatedImage: UIImage?
 
   @State private var isSaving: Bool = false
+  @State private var showAlert: AnyAppAlert?
 
   var prefix: String {
     avatarType.startsWithVowel ? "an" : "a"
@@ -40,6 +43,7 @@ struct CreateAvatarView: View {
           backButton
         }
       }
+      .showCustomAlert(alert: $showAlert)
     }
   }
 
@@ -173,12 +177,34 @@ private extension CreateAvatarView {
   }
 
   func onSavePressed() {
+    guard let generatedImage else { return }
     isSaving = true
 
     Task {
-      try? await Task.sleep(for: .seconds(2))
+
+      do {
+        try TextValidationHelper.textIsValid(avatarName, minimimCharacterCount: 3)
+        let uid = try authManager.getAuthId()
+
+        let avatar = AvatarModel(
+          avatarId: UUID().uuidString,
+          name: avatarName,
+          avatarType: avatarType,
+          avatarAction: avatarAction,
+          avatarLocation: avatarLocation,
+          profileImageName: nil,
+          authorId: uid,
+          dateCreated: .now
+        )
+
+        try await avatarManager.createAvatar(avatar, image: generatedImage)
+
+        dismiss()
+
+      } catch {
+        showAlert = AnyAppAlert(error: error)
+      }
       isSaving = false
-      dismiss()
     }
   }
 
@@ -187,4 +213,6 @@ private extension CreateAvatarView {
 #Preview {
   CreateAvatarView()
     .environment(AIManager(service: MockAIService()))
+    .environment(AvatarManager(service: MockAvatarService()))
+    .environment(AuthManager(service: MockAuthService(user: .mock())))
 }

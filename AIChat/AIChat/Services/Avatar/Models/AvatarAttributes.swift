@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AvatarType: String, CaseIterable, Hashable {
+enum AvatarType: String, CaseIterable, Hashable, Codable {
   case alien
   case bird
   case cat
@@ -50,7 +50,7 @@ enum AvatarType: String, CaseIterable, Hashable {
 
 }
 
-enum AvatarAction: String, CaseIterable, Hashable {
+enum AvatarAction: String, CaseIterable, Hashable, Codable {
   case crying
   case drinking
   case eating
@@ -68,7 +68,7 @@ enum AvatarAction: String, CaseIterable, Hashable {
   }
 }
 
-enum AvatarLocation: String, CaseIterable, Hashable {
+enum AvatarLocation: String, CaseIterable, Hashable, Codable {
   case city
   case desert
   case forest

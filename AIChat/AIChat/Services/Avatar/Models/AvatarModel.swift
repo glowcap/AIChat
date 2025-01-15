@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AvatarModel: Hashable {
+struct AvatarModel: Hashable, Codable {
 
   let avatarId: String
 
@@ -15,9 +15,13 @@ struct AvatarModel: Hashable {
   let avatarType: AvatarType?
   let avatarAction: AvatarAction?
   let avatarLocation: AvatarLocation?
-  let profileImageName: String?
+  private(set) var profileImageName: String?
   let authorId: String?
   let dateCreated: Date?
+
+  var description: String {
+    AvatarDescriptionBuilder(avatar: self).avatarDescription
+  }
 
   init(
     avatarId: String,
@@ -39,8 +43,19 @@ struct AvatarModel: Hashable {
     self.dateCreated = dateCreated
   }
 
-  var description: String {
-    AvatarDescriptionBuilder(avatar: self).avatarDescription
+  enum CodingKeys: String, CodingKey {
+    case avatarId = "avatar_id"
+    case name
+    case avatarType = "avatar_type"
+    case avatarAction = "avatar_action"
+    case avatarLocation = "avatar_location"
+    case profileImageName = "profile_image_name"
+    case authorId = "author_id"
+    case dateCreated = "date_created"
+  }
+
+  mutating func updateProfileImageName(_ name: String) {
+    profileImageName = name
   }
 
 }

@@ -2,7 +2,7 @@
 AIChat allows users to generate AI avatars to chat with.
 
 ## Branching
-Branches are broken into modules, sections, and parts. Naming follows moduleX/sXXpXX (ie. Section: 01 Part: 01). Use the following to reference specific branches 
+Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 01 Part: 01). Use the following to reference specific branches 
 
 ---
 
@@ -67,6 +67,7 @@ Branches are broken into modules, sections, and parts. Naming follows moduleX/sX
 ### Section 3: Manage Avatars
 
 1. AIManager: Generate Images
+2. AvatarManager: Upload Avatars
 
 ## Things to do
 
