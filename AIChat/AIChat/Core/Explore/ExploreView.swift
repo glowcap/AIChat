@@ -9,22 +9,37 @@ import SwiftUI
 
 struct ExploreView: View {
 
-  @State private var featuredAvatars: [AvatarModel] = AvatarModel.mocks
+  @Environment(AvatarManager.self) var avatarManager
+
+  @State private var featuredAvatars: [AvatarModel] = []
   @State private var categories: [AvatarType] = AvatarType.allCases
-  @State private var popularAvatars: [AvatarModel] = AvatarModel.mocks
+  @State private var popularAvatars: [AvatarModel] = []
 
   @State private var path: [NavigationPathOption] = []
 
   var body: some View {
     NavigationStack(path: $path) {
       List {
-        featuredSection
-        categorySection
-        popularSection
+        if featuredAvatars.isEmpty, popularAvatars.isEmpty {
+          loadingView
+        }
+        if !featuredAvatars.isEmpty {
+          featuredSection
+        }
+        if !popularAvatars.isEmpty {
+          categorySection
+          popularSection
+        }
       }
       .listStyle(.plain)
       .navigationTitle("Explore")
       .coreModuleNavigationDestination(path: $path)
+      .task {
+        await loadFeaturedAvatars()
+      }
+      .task {
+        await loadPopularAvatars()
+      }
     }
   }
 
@@ -103,11 +118,35 @@ private extension ExploreView {
     }
   }
 
+  var loadingView: some View {
+    LoaderView("Gathering avatars...")
+    .removeListRowFormatting()
+    .frame(maxWidth: .infinity)
+  }
+
 }
 
 // MARK: - Private functions
 
 private extension ExploreView {
+
+  func loadFeaturedAvatars() async {
+    guard featuredAvatars.isEmpty else { return }
+    do {
+      featuredAvatars = try await avatarManager.getFeaturedAvatars()
+    } catch {
+      print("🚨 Failed loading featured avatars: \(error.localizedDescription)")
+    }
+  }
+
+  func loadPopularAvatars() async {
+    guard popularAvatars.isEmpty else { return }
+    do {
+      popularAvatars = try await avatarManager.getPopularAvatars()
+    } catch {
+      print("🚨 Failed loading popular avatars: \(error.localizedDescription)")
+    }
+  }
 
   func onAvatarPressed(avatar: AvatarModel) {
     path.append(.chat(avatarId: avatar.avatarId))
@@ -127,4 +166,5 @@ private extension ExploreView {
 
 #Preview {
   ExploreView()
+    .environment(AvatarManager(service: MockAvatarService()))
 }

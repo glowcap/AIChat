@@ -25,4 +25,31 @@ struct FirebaseAvatarService: AvatarService {
     try collection.document(avatar.avatarId).setData(from: avatar, merge: true)
   }
 
+  func getFeaturedAvatars() async throws -> [AvatarModel] {
+    try await collection
+      .limit(to: 50)
+      .getAllDocuments()
+      .shuffled()
+      .first(upTo: 5) ?? []
+  }
+
+  func getPopularAvatars() async throws -> [AvatarModel] {
+    try await collection
+      .limit(to: 200)
+      .getAllDocuments()
+  }
+
+  func getAvatars(category: AvatarType) async throws -> [AvatarModel] {
+    try await collection
+      .whereField(AvatarModel.CodingKeys.avatarType.rawValue, isEqualTo: category.rawValue)
+      .limit(to: 200)
+      .getAllDocuments()
+  }
+
+  func getAvatarsForAuthor(userId: String) async throws -> [AvatarModel] {
+    try await collection
+      .whereField(AvatarModel.CodingKeys.authorId.rawValue, isEqualTo: userId)
+      .getAllDocuments()
+  }
+
 }

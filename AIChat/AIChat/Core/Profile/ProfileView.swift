@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
 
+  @Environment(AuthManager.self) private var authManager
   @Environment(UserManager.self) private var userManager
+  @Environment(AvatarManager.self) private var avatarManager
 
   @State private var showSettingsView: Bool = false
   @State private var showCreateAvatarView: Bool = false
@@ -74,7 +76,9 @@ private extension ProfileView {
 
   var userAvatarSection: some View {
     Section {
-      if currentUserAvatars.isEmpty {
+      if currentUserAvatars.isEmpty, isLoading {
+        loadingView
+      } else if currentUserAvatars.isEmpty {
         emptyAvatarsView
       } else {
         populatedAvatarsView
@@ -119,6 +123,12 @@ private extension ProfileView {
     .onDelete(perform: onDeleteAvatar)
   }
 
+  var loadingView: some View {
+    LoaderView("Finding your avatars...")
+      .removeListRowFormatting()
+      .frame(maxWidth: .infinity)
+  }
+
 }
 
 // MARK: - Private Functions
@@ -126,7 +136,12 @@ private extension ProfileView {
 
   func loadData() async {
     currentUser = userManager.currentUser
-    currentUserAvatars = AvatarModel.mocks
+    do {
+      let uid = try authManager.getAuthId()
+      currentUserAvatars = try await avatarManager.getAvatarsForAuthor(userId: uid)
+    } catch {
+      print("🚨 Failed loading avatars: \(error.localizedDescription)")
+    }
     isLoading = false
   }
 
@@ -152,5 +167,7 @@ private extension ProfileView {
 #Preview {
   ProfileView()
     .environment(UserManager(services: MockUserServices(user: .mock)))
+    .environment(AvatarManager(service: MockAvatarService()))
+    .environment(AuthManager(service: MockAuthService(user: .mock())))
     .environment(AppState())
 }

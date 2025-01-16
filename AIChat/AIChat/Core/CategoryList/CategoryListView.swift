@@ -9,16 +9,24 @@ import SwiftUI
 
 struct CategoryListView: View {
 
+  @Environment(AvatarManager.self) var avatarManager
+
   @Binding var path: [NavigationPathOption]
   var category: AvatarType = .alien
   var imageName: String = Constants.randomImage
 
-  @State private var avatars: [AvatarModel] = AvatarModel.mocks
+  @State private var avatars: [AvatarModel] = []
+  @State private var isLoading: Bool = true
+  @State private var showAlert: AnyAppAlert?
 
   var body: some View {
     ZStack {
       easterEggIcon
       mainContent
+    }
+    .showCustomAlert(alert: $showAlert)
+    .task {
+      await getAvatars(category: category)
     }
   }
 
@@ -37,7 +45,11 @@ private extension CategoryListView {
   var mainContent: some View {
     List {
       headerCell
-      avatarListSection
+      if avatars.isEmpty && isLoading {
+        loadingView
+      } else {
+        avatarListSection
+      }
     }
     .ignoresSafeArea(edges: [.top])
     .listStyle(.plain)
@@ -67,11 +79,27 @@ private extension CategoryListView {
     }
   }
 
+  var loadingView: some View {
+    LoaderView("Gathering \(category.categoryName)...")
+      .removeListRowFormatting()
+      .frame(maxWidth: .infinity)
+  }
+
 }
 
 // MARK: - Private functions
 
 private extension CategoryListView {
+
+  func getAvatars(category: AvatarType) async {
+    do {
+      avatars = try await avatarManager.getAvatars(category: category)
+    } catch {
+      print("🚨 Failed loading \(category.categoryName) avatars: \(error.localizedDescription)")
+      showAlert = AnyAppAlert(error: error)
+    }
+    isLoading = false
+  }
 
   func onAvatarPressed(avatar: AvatarModel) {
     path.append(.chat(avatarId: avatar.avatarId))
@@ -81,4 +109,5 @@ private extension CategoryListView {
 
 #Preview {
   CategoryListView(path: .constant([]))
+    .environment(AvatarManager(service: MockAvatarService()))
 }

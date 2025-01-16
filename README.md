@@ -68,6 +68,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 
 1. AIManager: Generate Images
 2. AvatarManager: Upload Avatars
+3. AvatarManager: Download Avatars
 
 ## Things to do
 
@@ -84,3 +85,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] fix ChatsView Recents clipping issue
 - [ ] move to Supabase
 - [ ] salt persisted userModel
+- [ ] set time limit to reload ExploreView avatars
