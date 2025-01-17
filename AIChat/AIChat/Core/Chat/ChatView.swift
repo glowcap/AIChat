@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ChatView: View {
 
+  @Environment(AvatarManager.self) var avatarManager
+
   @State private var chatMessages: [ChatMessageModel] = ChatMessageModel.mocks
-  @State private var avatar: AvatarModel? = .mock
+  @State private var avatar: AvatarModel?
   @State private var currentUser: UserModel? = .mock
   @State private var textFieldText: String = ""
 
@@ -45,6 +47,9 @@ struct ChatView: View {
       if let avatar {
         profileModal(avatar: avatar)
       }
+    }
+    .task {
+      await loadAvatar()
     }
   }
 
@@ -134,6 +139,18 @@ private extension ChatView {
 
 private extension ChatView {
 
+  func loadAvatar() async {
+    do {
+      let avatar = try await avatarManager.getAvatar(id: avatarId)
+      self.avatar = avatar
+      // ignoring throw since image doesn't have priority
+      try? avatarManager.addRecentAvatar(avatar)
+    } catch {
+      print("⚠️ Failed to download avatar: \(error.localizedDescription)")
+    }
+
+  }
+
   func createChatMessage(content: String) -> ChatMessageModel {
     ChatMessageModel(
       id: UUID().uuidString,
@@ -189,4 +206,8 @@ private extension ChatView {
   NavigationStack {
     ChatView()
   }
+  .environment(AvatarManager(
+    remote: MockAvatarService(),
+    local: MockLocalAvatarPersistence()
+  ))
 }

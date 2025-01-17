@@ -166,5 +166,8 @@ private extension ExploreView {
 
 #Preview {
   ExploreView()
-    .environment(AvatarManager(service: MockAvatarService()))
+    .environment(AvatarManager(
+      remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
 }

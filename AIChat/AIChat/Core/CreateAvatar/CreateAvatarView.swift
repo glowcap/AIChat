@@ -213,6 +213,9 @@ private extension CreateAvatarView {
 #Preview {
   CreateAvatarView()
     .environment(AIManager(service: MockAIService()))
-    .environment(AvatarManager(service: MockAvatarService()))
+    .environment(AvatarManager(
+      remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
     .environment(AuthManager(service: MockAuthService(user: .mock())))
 }

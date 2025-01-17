@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import SwiftfulFirestore
 
-struct FirebaseAvatarService: AvatarService {
+struct FirebaseAvatarService: RemoteAvatarService {
 
   var collection: CollectionReference = Firestore.firestore().collection("avatars")
 
@@ -23,6 +23,10 @@ struct FirebaseAvatarService: AvatarService {
     avatar.updateProfileImageName(url.absoluteString)
 
     try collection.document(avatar.avatarId).setData(from: avatar, merge: true)
+  }
+
+  func getAvatar(id: String) async throws -> AvatarModel {
+    try await collection.getDocument(id: id)
   }
 
   func getFeaturedAvatars() async throws -> [AvatarModel] {

@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-protocol AvatarService: Sendable {
+protocol RemoteAvatarService: Sendable {
   func createAvatar(_ avatar: AvatarModel, image: UIImage) async throws
+  func getAvatar(id: String) async throws -> AvatarModel
   func getFeaturedAvatars() async throws -> [AvatarModel]
   func getPopularAvatars() async throws -> [AvatarModel]
   func getAvatars(category: AvatarType) async throws -> [AvatarModel]
-  func getAvatarsForAuthor(userId: String) async throws -> [AvatarModel] 
+  func getAvatarsForAuthor(userId: String) async throws -> [AvatarModel]
 }

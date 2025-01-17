@@ -167,7 +167,10 @@ private extension ProfileView {
 #Preview {
   ProfileView()
     .environment(UserManager(services: MockUserServices(user: .mock)))
-    .environment(AvatarManager(service: MockAvatarService()))
+    .environment(AvatarManager(
+      remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
     .environment(AuthManager(service: MockAuthService(user: .mock())))
     .environment(AppState())
 }

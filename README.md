@@ -69,6 +69,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 1. AIManager: Generate Images
 2. AvatarManager: Upload Avatars
 3. AvatarManager: Download Avatars
+4. AvatarManager: Recent Avatars
 
 ## Things to do
 
@@ -86,3 +87,6 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] move to Supabase
 - [ ] salt persisted userModel
 - [ ] set time limit to reload ExploreView avatars
+- [ ] add AvatarManagerError to better track errors thrown
+- [ ] Remove LocalAvatarPersistence from MainActor
+- [ ] Set AvatarEntitie persistence to max 10

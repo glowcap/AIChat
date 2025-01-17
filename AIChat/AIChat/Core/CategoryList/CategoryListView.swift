@@ -109,5 +109,8 @@ private extension CategoryListView {
 
 #Preview {
   CategoryListView(path: .constant([]))
-    .environment(AvatarManager(service: MockAvatarService()))
+    .environment(AvatarManager(
+      remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
 }

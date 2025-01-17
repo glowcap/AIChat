@@ -11,30 +11,44 @@ import SwiftUI
 @Observable
 class AvatarManager {
 
-  private let service: AvatarService
+  private let remote: RemoteAvatarService
+  private let local: LocalAvatarPersistence
 
-  init(service: AvatarService) {
-    self.service = service
+  init(remote: RemoteAvatarService, local: LocalAvatarPersistence) {
+    self.remote = remote
+    self.local = local
+  }
+
+  func addRecentAvatar(_ avatar: AvatarModel) throws {
+    try local.addRecentAvatar(avatar)
+  }
+
+  func getRecentAvatars() throws -> [AvatarModel] {
+    try local.getRecentAvatars()
   }
 
   func createAvatar(_ avatar: AvatarModel, image: UIImage) async throws {
-    try await service.createAvatar(avatar, image: image)
+    try await remote.createAvatar(avatar, image: image)
+  }
+
+  func getAvatar(id: String) async throws -> AvatarModel {
+    try await remote.getAvatar(id: id)
   }
 
   func getFeaturedAvatars() async throws -> [AvatarModel] {
-    try await service.getFeaturedAvatars()
+    try await remote.getFeaturedAvatars()
   }
 
   func getPopularAvatars() async throws -> [AvatarModel] {
-    try await service.getPopularAvatars()
+    try await remote.getPopularAvatars()
   }
 
   func getAvatars(category: AvatarType) async throws -> [AvatarModel] {
-    try await service.getAvatars(category: category)
+    try await remote.getAvatars(category: category)
   }
 
   func getAvatarsForAuthor(userId: String) async throws -> [AvatarModel] {
-    try await service.getAvatarsForAuthor(userId: userId)
+    try await remote.getAvatarsForAuthor(userId: userId)
   }
 
 }

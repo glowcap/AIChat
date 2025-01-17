@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ChatsView: View {
 
+  @Environment(AvatarManager.self) var avatarManager
+
   @State private var chats: [ChatModel] = ChatModel.mocks
-  @State private var recentAvatars: [AvatarModel] = AvatarModel.mocks
+  @State private var recentAvatars: [AvatarModel] = []
 
   @State private var path: [NavigationPathOption] = []
 
@@ -25,6 +27,7 @@ struct ChatsView: View {
       .navigationTitle("Chats")
       .coreModuleNavigationDestination(path: $path)
     }
+    .onAppear(perform: loadRecentAvatars)
   }
 
 }
@@ -111,6 +114,14 @@ private extension ChatsView {
 
 private extension ChatsView {
 
+  func loadRecentAvatars() {
+    do {
+      recentAvatars = try avatarManager.getRecentAvatars()
+    } catch {
+      print("⛔️ Failed to load recent Avatars: \(error.localizedDescription)")
+    }
+  }
+
   func onChatPressed(chat: ChatModel) {
     path.append(.chat(avatarId: chat.avatarId))
   }
@@ -123,4 +134,8 @@ private extension ChatsView {
 
 #Preview {
   ChatsView()
+    .environment(AvatarManager(
+      remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
 }
