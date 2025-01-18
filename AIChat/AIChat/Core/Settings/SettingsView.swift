@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
   @Environment(AuthManager.self) private var authManager
   @Environment(UserManager.self) private var userManager
+  @Environment(AvatarManager.self) private var avatarManager
   @Environment(\.dismiss) private var dismiss
   @Environment(AppState.self) private var root
 
@@ -153,8 +154,13 @@ private extension SettingsView {
   }
 
   func deleteAccount() async throws {
-    try await authManager.deleteAccount()
-    try await userManager.deleteCurrentUser()
+    let authId = try authManager.getAuthId()
+
+    async let deleteAuth: () = authManager.deleteAccount()
+    async let deleteUser: () = userManager.deleteCurrentUser()
+    async let deleteAvatars: () = avatarManager.removeAuthorIdFromAllAvatars(userId: authId)
+
+    let (_, _, _) = await (try deleteAuth, try deleteUser, try deleteAvatars)
   }
 
   func tryAndDismiss(_ action: @escaping () async throws -> Void) {
@@ -212,6 +218,10 @@ fileprivate extension View {
       service: MockAuthService(user: UserAuthInfo.mock(isAnonymous: true))
     ))
     .environment(UserManager(services: MockUserServices(user: .mock)))
+    .environment(AvatarManager(
+      remote: MockAvatarService(avatars: []),
+      local: MockLocalAvatarPersistence())
+    )
     .environment(AppState())
 }
 
@@ -221,6 +231,7 @@ fileprivate extension View {
       service: MockAuthService(user: UserAuthInfo.mock())
     ))
     .environment(UserManager(services: MockUserServices(user: .mock)))
+    .environment(AvatarManager(remote: MockAvatarService(), local: MockLocalAvatarPersistence()))
     .environment(AppState())
 }
 
@@ -228,5 +239,9 @@ fileprivate extension View {
   SettingsView()
     .environment(AuthManager(service: MockAuthService()))
     .environment(UserManager(services: MockUserServices()))
+    .environment(AvatarManager(
+      remote: MockAvatarService(avatars: []),
+      local: MockLocalAvatarPersistence())
+    )
     .environment(AppState())
 }

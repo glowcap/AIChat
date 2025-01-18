@@ -52,4 +52,12 @@ class AvatarManager {
     try await remote.getAvatarsForAuthor(userId: userId)
   }
 
+  func removeAuthorIdFromAvatar(avatarId: String) async throws {
+    try await remote.removeAuthorIdFromAvatar(avatarId: avatarId)
+  }
+
+  func removeAuthorIdFromAllAvatars(userId: String) async throws {
+    try await remote.removeAuthorIdFromAllAvatars(userId: userId)
+  }
+
 }
