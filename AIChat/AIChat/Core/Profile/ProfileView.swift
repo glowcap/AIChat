@@ -125,7 +125,8 @@ private extension ProfileView {
   }
 
   var loadingView: some View {
-    LoaderView("Finding your avatars...")
+    ProgressView("Finding your avatars...")
+      .progressViewStyle(.contentLoader)
       .removeListRowFormatting()
       .frame(maxWidth: .infinity)
   }
@@ -167,11 +168,5 @@ private extension ProfileView {
 
 #Preview {
   ProfileView()
-    .environment(UserManager(services: MockUserServices(user: .mock)))
-    .environment(AvatarManager(
-      remote: MockAvatarService(),
-      local: MockLocalAvatarPersistence()
-    ))
-    .environment(AuthManager(service: MockAuthService(user: .mock())))
-    .environment(AppState())
+    .previewEnvironment()
 }

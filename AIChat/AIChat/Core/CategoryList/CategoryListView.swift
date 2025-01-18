@@ -45,8 +45,10 @@ private extension CategoryListView {
   var mainContent: some View {
     List {
       headerCell
-      if avatars.isEmpty && isLoading {
+      if avatars.isEmpty, isLoading {
         loadingView
+      } else if avatars.isEmpty {
+        noAvatarsView
       } else {
         avatarListSection
       }
@@ -80,9 +82,21 @@ private extension CategoryListView {
   }
 
   var loadingView: some View {
-    LoaderView("Gathering \(category.categoryName)...")
-      .removeListRowFormatting()
+    ProgressView("Gathering \(category.categoryName)...")
+      .progressViewStyle(.contentLoader)
       .frame(maxWidth: .infinity)
+      .padding(.top, 16)
+      .removeListRowFormatting()
+  }
+
+  var noAvatarsView: some View {
+    Text("No avatars found 👤")
+      .font(.body)
+      .foregroundStyle(.secondary)
+      .frame(maxWidth: .infinity)
+      .padding(16)
+      .listRowSeparator(.hidden)
+      .removeListRowFormatting()
   }
 
 }
@@ -107,10 +121,34 @@ private extension CategoryListView {
 
 }
 
-#Preview {
+#Preview("Has Data") {
   CategoryListView(path: .constant([]))
     .environment(AvatarManager(
       remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
+}
+
+#Preview("No Data") {
+  CategoryListView(path: .constant([]))
+    .environment(AvatarManager(
+      remote: MockAvatarService(avatars: []),
+      local: MockLocalAvatarPersistence()
+    ))
+}
+
+#Preview("Slow Loading") {
+  CategoryListView(path: .constant([]))
+    .environment(AvatarManager(
+      remote: MockAvatarService(avatars: [], delay: 10.0),
+      local: MockLocalAvatarPersistence()
+    ))
+}
+
+#Preview("Error Loading") {
+  CategoryListView(path: .constant([]))
+    .environment(AvatarManager(
+      remote: MockAvatarService(avatars: [], delay: 1.0, showError: true),
       local: MockLocalAvatarPersistence()
     ))
 }

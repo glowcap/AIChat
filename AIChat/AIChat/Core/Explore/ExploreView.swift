@@ -11,9 +11,11 @@ struct ExploreView: View {
 
   @Environment(AvatarManager.self) var avatarManager
 
-  @State private var featuredAvatars: [AvatarModel] = []
   @State private var categories: [AvatarType] = AvatarType.allCases
+  @State private var featuredAvatars: [AvatarModel] = []
   @State private var popularAvatars: [AvatarModel] = []
+  @State private var isLoadingFeatured: Bool = true
+  @State private var isLoadingPopular: Bool = true
 
   @State private var path: [NavigationPathOption] = []
 
@@ -21,7 +23,7 @@ struct ExploreView: View {
     NavigationStack(path: $path) {
       List {
         if featuredAvatars.isEmpty, popularAvatars.isEmpty {
-          loadingView
+          emptyContentView
         }
         if !featuredAvatars.isEmpty {
           featuredSection
@@ -118,10 +120,42 @@ private extension ExploreView {
     }
   }
 
-  var loadingView: some View {
-    LoaderView("Gathering avatars...")
+  var emptyContentView: some View {
+    // ZStack is being used a view builder to
+    // fix a bug where the progress view doesn't
+    // show on calling `loadAvatarsAgain`
+    ZStack {
+      if isLoadingFeatured || isLoadingPopular {
+        loadingView
+      } else {
+        loadingFailedView
+      }
+    }
+    .frame(maxWidth: .infinity, alignment: .center)
+    .padding(.top, 40)
     .removeListRowFormatting()
-    .frame(maxWidth: .infinity)
+  }
+
+  var loadingView: some View {
+    ProgressView("Gathering avatars...")
+      .progressViewStyle(.contentLoader)
+  }
+
+  var loadingFailedView: some View {
+    VStack(alignment: .center, spacing: 16) {
+      Text("🤷🏻‍♀️ Something Went Wrong 🤷🏻‍♂️")
+        .font(.headline)
+        .fontWeight(.semibold)
+      Text("Please check your internet connection and try again.")
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+      Text("Try Again")
+        .font(.headline)
+        .fontWeight(.semibold)
+        .foregroundStyle(.accent)
+        .anyButton(.press, action: loadAvatarsAgain)
+    }
+    .multilineTextAlignment(.center)
   }
 
 }
@@ -137,6 +171,7 @@ private extension ExploreView {
     } catch {
       print("🚨 Failed loading featured avatars: \(error.localizedDescription)")
     }
+    isLoadingFeatured = false
   }
 
   func loadPopularAvatars() async {
@@ -146,6 +181,7 @@ private extension ExploreView {
     } catch {
       print("🚨 Failed loading popular avatars: \(error.localizedDescription)")
     }
+    isLoadingPopular = false
   }
 
   func onAvatarPressed(avatar: AvatarModel) {
@@ -162,12 +198,35 @@ private extension ExploreView {
       .profileImageName
   }
 
+  func loadAvatarsAgain() {
+    isLoadingFeatured = true
+    isLoadingPopular = true
+    Task { await loadFeaturedAvatars() }
+    Task { await loadPopularAvatars() }
+  }
+
 }
 
-#Preview {
+#Preview("Has Data") {
   ExploreView()
     .environment(AvatarManager(
       remote: MockAvatarService(),
+      local: MockLocalAvatarPersistence()
+    ))
+}
+
+#Preview("No Data") {
+  ExploreView()
+    .environment(AvatarManager(
+      remote: MockAvatarService(avatars: [], delay: 2),
+      local: MockLocalAvatarPersistence()
+    ))
+}
+
+#Preview("Slow Loading") {
+  ExploreView()
+    .environment(AvatarManager(
+      remote: MockAvatarService(delay: 20),
       local: MockLocalAvatarPersistence()
     ))
 }

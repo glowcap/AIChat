@@ -71,6 +71,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 3. AvatarManager: Download Avatars
 4. AvatarManager: Recent Avatars
 5. AvatarManager: Popular Avatars
+6. AvatarManager: Preview Avatars
 
 ## Things to do
 
