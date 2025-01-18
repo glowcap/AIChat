@@ -144,7 +144,7 @@ private extension ChatView {
       let avatar = try await avatarManager.getAvatar(id: avatarId)
       self.avatar = avatar
       // ignoring throw since image doesn't have priority
-      try? avatarManager.addRecentAvatar(avatar)
+      try? await avatarManager.addRecentAvatar(avatar)
     } catch {
       print("⚠️ Failed to download avatar: \(error.localizedDescription)")
     }

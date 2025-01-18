@@ -19,8 +19,9 @@ class AvatarManager {
     self.local = local
   }
 
-  func addRecentAvatar(_ avatar: AvatarModel) throws {
+  func addRecentAvatar(_ avatar: AvatarModel) async throws {
     try local.addRecentAvatar(avatar)
+    try await remote.incrementAvatarClickCount(avatarId: avatar.avatarId)
   }
 
   func getRecentAvatars() throws -> [AvatarModel] {

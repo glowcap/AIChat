@@ -22,6 +22,7 @@ struct AvatarModel: Hashable, Codable, StringIdentifiable {
   private(set) var profileImageName: String?
   let authorId: String?
   let dateCreated: Date?
+  let clickCount: Int?
 
   var description: String {
     AvatarDescriptionBuilder(avatar: self).avatarDescription
@@ -35,7 +36,8 @@ struct AvatarModel: Hashable, Codable, StringIdentifiable {
     avatarLocation: AvatarLocation? = nil,
     profileImageName: String? = nil,
     authorId: String? = nil,
-    dateCreated: Date? = nil
+    dateCreated: Date? = nil,
+    clickCount: Int? = nil
   ) {
     self.avatarId = avatarId
     self.name = name
@@ -45,17 +47,20 @@ struct AvatarModel: Hashable, Codable, StringIdentifiable {
     self.profileImageName = profileImageName
     self.authorId = authorId
     self.dateCreated = dateCreated
+    self.clickCount = clickCount
   }
 
   enum CodingKeys: String, CodingKey {
     case avatarId = "avatar_id"
-    case name
-    case avatarType = "avatar_type"
+
+    case authorId = "author_id"
     case avatarAction = "avatar_action"
     case avatarLocation = "avatar_location"
-    case profileImageName = "profile_image_name"
-    case authorId = "author_id"
+    case avatarType = "avatar_type"
+    case clickCount = "click_count"
     case dateCreated = "date_created"
+    case name
+    case profileImageName = "profile_image_name"
   }
 
   mutating func updateProfileImageName(_ name: String) {
@@ -82,7 +87,8 @@ extension AvatarModel {
         avatarLocation: .park,
         profileImageName: Constants.randomImage,
         authorId: UUID().uuidString,
-        dateCreated: .now
+        dateCreated: .now,
+        clickCount: 10
       ),
       AvatarModel(
         avatarId: UUID().uuidString,
@@ -92,7 +98,8 @@ extension AvatarModel {
         avatarLocation: .store,
         profileImageName: Constants.randomImage,
         authorId: UUID().uuidString,
-        dateCreated: .now
+        dateCreated: .now,
+        clickCount: 20
       ),
       AvatarModel(
         avatarId: UUID().uuidString,
@@ -102,7 +109,8 @@ extension AvatarModel {
         avatarLocation: .forest,
         profileImageName: Constants.randomImage,
         authorId: UUID().uuidString,
-        dateCreated: .now
+        dateCreated: .now,
+        clickCount: 50
       ),
       AvatarModel(
         avatarId: UUID().uuidString,
@@ -112,7 +120,8 @@ extension AvatarModel {
         avatarLocation: .space,
         profileImageName: Constants.randomImage,
         authorId: UUID().uuidString,
-        dateCreated: .now
+        dateCreated: .now,
+        clickCount: 100
       )
     ]
   }

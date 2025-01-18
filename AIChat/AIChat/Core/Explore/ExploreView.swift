@@ -158,7 +158,7 @@ private extension ExploreView {
 
   func getCategoryImageName(_ category: AvatarType ) -> String? {
     popularAvatars
-      .first(where: { $0.avatarType == category })?
+      .last(where: { $0.avatarType == category })?
       .profileImageName
   }
 

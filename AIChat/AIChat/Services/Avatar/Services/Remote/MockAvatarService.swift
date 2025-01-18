@@ -32,7 +32,11 @@ struct MockAvatarService: RemoteAvatarService {
 
   func getAvatarsForAuthor(userId: String) async throws -> [AvatarModel] {
     try await Task.sleep(for: .seconds(1))
-    return AvatarModel.mocks.shuffled()
+    return AvatarModel.mocks.sorted(by: {
+      ($0.dateCreated ?? .distantPast) > ($1.dateCreated ?? .distantPast)
+    })
   }
+
+  func incrementAvatarClickCount(avatarId: String) async throws { }
 
 }

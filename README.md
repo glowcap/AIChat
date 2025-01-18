@@ -70,6 +70,7 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 2. AvatarManager: Upload Avatars
 3. AvatarManager: Download Avatars
 4. AvatarManager: Recent Avatars
+5. AvatarManager: Popular Avatars
 
 ## Things to do
 
@@ -90,3 +91,4 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 - [ ] add AvatarManagerError to better track errors thrown
 - [ ] Remove LocalAvatarPersistence from MainActor
 - [ ] Set AvatarEntitie persistence to max 10
+- [ ] fix ExploreView pop-in on launch
