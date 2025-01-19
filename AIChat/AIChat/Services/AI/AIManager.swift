@@ -21,4 +21,16 @@ class AIManager {
     try await service.generateImage(input: input)
   }
 
+  func generateText(forChat chat: [AIChatModel]) async throws -> AIChatModel {
+    try await service.generateText(forChat: chat)
+  }
+
+}
+
+extension AIManager {
+
+  enum AIError: LocalizedError {
+    case invalidResponse
+  }
+
 }

@@ -14,4 +14,9 @@ struct MockAIService: AIService {
     return UIImage(systemName: "person.circle.fill")!
   }
 
+  func generateText(forChat chat: [AIChatModel]) async throws -> AIChatModel {
+    try await Task.sleep(for: .seconds(2))
+    return AIChatModel(role: .assistant, content: "I should've just left you on \"read\"")
+  }
+
 }

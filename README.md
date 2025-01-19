@@ -74,6 +74,10 @@ Branches are broken into sections and parts. Naming follows sXXpXX (ie. Section 
 6. AvatarManager: Preview Avatars
 7. AvatarManager: Delete Avatars
 
+### Section 4: Manage Chats
+
+1. AIManager: Generate Chats
+
 ## Things to do
 
 - [ ] iOS 18+ branch

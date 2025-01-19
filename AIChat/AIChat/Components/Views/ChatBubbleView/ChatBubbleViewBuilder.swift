@@ -16,7 +16,7 @@ struct ChatBubbleViewBuilder: View {
 
   var body: some View {
     ChatBubbleView(
-      text: message.content ?? "",
+      text: message.content?.message ?? "",
       textColor: isCurrentUser ? .white : .primary,
       backgroundColor: isCurrentUser ? .accent : Color(uiColor: .systemGray5),
       showImage: !isCurrentUser,
@@ -41,7 +41,7 @@ struct ChatBubbleViewBuilder: View {
           id: UUID().uuidString,
           chatId: UUID().uuidString,
           authorId: UUID().uuidString,
-          content: "This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines. This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines.",
+          content: AIChatModel(role: .user, content: "This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines. This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines."),
           seenByIds: [],
           dateCreated: .now
         ),
@@ -53,7 +53,7 @@ struct ChatBubbleViewBuilder: View {
           id: UUID().uuidString,
           chatId: UUID().uuidString,
           authorId: UUID().uuidString,
-          content: "This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines. This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines.This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines. This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines.",
+          content: AIChatModel(role: .assistant, content: "This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines. This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines.This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines. This is a message with a lot of text that wraps to mulitiple lines and must wrap to other lines."),
           seenByIds: [],
           dateCreated: .now
         ),

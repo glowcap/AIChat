@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatView: View {
 
+  @Environment(AIManager.self) var aiManager
   @Environment(AvatarManager.self) var avatarManager
 
   @State private var chatMessages: [ChatMessageModel] = ChatMessageModel.mocks
@@ -148,35 +149,6 @@ private extension ChatView {
     } catch {
       print("⚠️ Failed to download avatar: \(error.localizedDescription)")
     }
-
-  }
-
-  func createChatMessage(content: String) -> ChatMessageModel {
-    ChatMessageModel(
-      id: UUID().uuidString,
-      chatId: UUID().uuidString,
-      authorId: currentUser?.userId,
-      content: content,
-      seenByIds: nil,
-      dateCreated: .now
-    )
-  }
-
-  func pushMessage(_ message: ChatMessageModel) {
-    chatMessages.append(message)
-    scrollPosition = message.id
-    textFieldText = ""
-  }
-
-  func onSendMessagePressed() {
-    let content = textFieldText
-    do {
-      try TextValidationHelper.textIsValid(content)
-      let message = createChatMessage(content: content)
-      pushMessage(message)
-    } catch {
-      showAlert = AnyAppAlert(error: error)
-    }
   }
 
   func onChatSettingsPressed() {
@@ -194,8 +166,57 @@ private extension ChatView {
     )
   }
 
+  // MARK: Button actions
+
   func onAvatarImagePressed() {
     showProfileModal = true
+  }
+
+  func onSendMessagePressed() {
+    let content = textFieldText
+
+    Task {
+      do {
+        try TextValidationHelper.textIsValid(content)
+        let userMessage = try postUserMessage(content)
+        try await postAIResponse()
+      } catch {
+        showAlert = AnyAppAlert(error: error)
+      }
+    }
+  }
+
+  // MARK: Message functions
+
+  func postUserMessage(_ content: String) throws -> ChatMessageModel {
+    try TextValidationHelper.textIsValid(content)
+    let message = createChatMessage(content: content, authorId: currentUser?.userId)
+    pushMessage(message)
+    return message
+  }
+
+  func postAIResponse() async throws {
+    let aiChat = chatMessages.compactMap { $0.content }
+    let response = try await aiManager.generateText(forChat: aiChat)
+    let aiMessage = createChatMessage(content: response.message, authorId: avatarId)
+    pushMessage(aiMessage)
+  }
+
+  func createChatMessage(content: String, authorId: String?) -> ChatMessageModel {
+    ChatMessageModel(
+      id: UUID().uuidString,
+      chatId: UUID().uuidString,
+      authorId: authorId,
+      content: AIChatModel(role: .user, content: content),
+      seenByIds: nil,
+      dateCreated: .now
+    )
+  }
+
+  func pushMessage(_ message: ChatMessageModel) {
+    chatMessages.append(message)
+    scrollPosition = message.id
+    textFieldText = ""
   }
 
 }
@@ -206,8 +227,5 @@ private extension ChatView {
   NavigationStack {
     ChatView()
   }
-  .environment(AvatarManager(
-    remote: MockAvatarService(),
-    local: MockLocalAvatarPersistence()
-  ))
+  .previewEnvironment()
 }

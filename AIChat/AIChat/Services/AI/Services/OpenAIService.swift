@@ -8,6 +8,10 @@
 import OpenAI
 import SwiftUI
 
+typealias OpenAIChatContent = ChatQuery.ChatCompletionMessageParam
+                              .ChatCompletionUserMessageParam.Content.VisionContent
+typealias OpenAIChatText = OpenAIChatContent.ChatCompletionContentPartTextParam
+
 struct OpenAIService: AIService {
 
   var openAI: OpenAI {
@@ -33,14 +37,24 @@ struct OpenAIService: AIService {
           let data = Data(base64Encoded: b64Json),
           let image = UIImage(data: data)
     else {
-      throw OpenAIError.invalidResponse
+      throw AIManager.AIError.invalidResponse
     }
 
     return image
   }
 
-  enum OpenAIError: LocalizedError {
-    case invalidResponse
+  func generateText(forChat chat: [AIChatModel]) async throws -> AIChatModel {
+    let messages = chat.compactMap { $0.toOpenAIModel() }
+    let query = ChatQuery(messages: messages, model: .gpt3_5Turbo)
+    let result = try await openAI.chats(query: query)
+
+    guard
+      let chat = result.choices.first?.message,
+      let model = AIChatModel(chat: chat)
+    else {
+      throw AIManager.AIError.invalidResponse
+    }
+    return model
   }
 
 }
